@@ -10,6 +10,8 @@ export const metadata: Metadata = {
 
 const docsNav = [
   { href: "/docs", label: "Overview" },
+  { href: "/docs/getting-started", label: "Getting Started" },
+  { href: "/docs/concepts", label: "Concepts" },
   { href: "/docs/authentication", label: "Authentication" },
   { href: "/docs/reference", label: "API Reference" },
   { href: "/docs/errors", label: "Errors" },

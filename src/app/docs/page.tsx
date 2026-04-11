@@ -1,13 +1,34 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Code, Key, AlertTriangle } from "lucide-react";
+import {
+  ArrowRight,
+  Code,
+  Key,
+  AlertTriangle,
+  Rocket,
+  Puzzle,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Documentation",
 };
 
 const guides = [
+  {
+    href: "/docs/getting-started",
+    icon: Rocket,
+    title: "Getting Started",
+    description:
+      "Step-by-step tutorial covering users, signals, affinities, feed, clusters, campaigns, and analytics.",
+  },
+  {
+    href: "/docs/concepts",
+    icon: Puzzle,
+    title: "Concepts",
+    description:
+      "How each primitive works independently and how they compose into different application patterns.",
+  },
   {
     href: "/docs/authentication",
     icon: Key,
