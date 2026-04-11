@@ -28,7 +28,7 @@ const footerSections = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border bg-surface-sunken">
+    <footer className="border-t border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-12">
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
           <div className="col-span-2 sm:col-span-1">
@@ -36,16 +36,16 @@ export function SiteFooter() {
               <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 shadow-sm">
                 <HexIcon className="h-4 w-4 text-white" />
               </span>
-              <span>Simbee</span>
+              <span className="dark:text-neutral-100">Simbee</span>
             </Link>
-            <p className="mt-3 text-sm text-text-secondary max-w-xs leading-relaxed">
+            <p className="mt-3 text-sm text-neutral-500 dark:text-neutral-400 max-w-xs leading-relaxed">
               API platform for user intelligence, relationships, and
               recommendations.
             </p>
           </div>
           {footerSections.map((section) => (
             <div key={section.title}>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-text-tertiary mb-3">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3">
                 {section.title}
               </h4>
               <ul className="space-y-2">
@@ -53,7 +53,7 @@ export function SiteFooter() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-text-secondary hover:text-text transition-colors"
+                      className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -63,7 +63,7 @@ export function SiteFooter() {
             </div>
           ))}
         </div>
-        <div className="mt-10 pt-6 border-t border-border text-sm text-text-tertiary">
+        <div className="mt-10 pt-6 border-t border-neutral-200 dark:border-neutral-800 text-sm text-neutral-400 dark:text-neutral-500">
           &copy; {new Date().getFullYear()} Simbee. All rights reserved.
         </div>
       </div>

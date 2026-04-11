@@ -43,7 +43,7 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="rounded-xl border border-border bg-surface-raised p-6 space-y-4 shadow-sm">
+      <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 space-y-4 shadow-sm">
         <div className="space-y-2">
           <Label htmlFor="client-id">Client ID</Label>
           <Input
@@ -66,7 +66,7 @@ export function LoginForm() {
             onChange={(e) => setUserId(e.target.value)}
             required
           />
-          <p className="text-xs text-text-tertiary">
+          <p className="text-xs text-neutral-400 dark:text-neutral-500">
             Use &quot;owner&quot; for the account owner, or a user&apos;s external ID.
           </p>
         </div>
@@ -92,9 +92,9 @@ export function LoginForm() {
         {submitting ? "Logging in..." : "Log in"}
       </Button>
 
-      <p className="text-center text-sm text-text-secondary">
+      <p className="text-center text-sm text-neutral-500 dark:text-neutral-400">
         Don&apos;t have an account?{" "}
-        <Link href="/signup" className="text-primary hover:underline">
+        <Link href="/signup" className="text-amber-600 dark:text-amber-400 hover:underline">
           Sign up
         </Link>
       </p>

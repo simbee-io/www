@@ -86,7 +86,7 @@ export default function DocsHome() {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-3">Simbee Documentation</h1>
-      <p className="text-lg text-text-secondary mb-10 max-w-2xl leading-relaxed">
+      <p className="text-lg text-neutral-500 dark:text-neutral-400 mb-10 max-w-2xl leading-relaxed">
         Simbee is an API platform that turns user behavior into structured
         relationships, recommendations, and insights. It provides composable
         primitives — signals, affinities, vocabulary, scoring, clustering,
@@ -98,7 +98,7 @@ export default function DocsHome() {
       <div className="grid gap-3 sm:grid-cols-2 mb-10">
         {guides.map((g) => (
           <Link key={g.href} href={g.href} className="group">
-            <Card className="h-full transition-all group-hover:border-border-strong group-hover:shadow-lg">
+            <Card className="h-full transition-all group-hover:border-neutral-300 dark:border-neutral-700 group-hover:shadow-lg">
               <CardContent className="py-4">
                 <div className="flex items-start gap-3">
                   <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${g.bg} ${g.color}`}>
@@ -107,9 +107,9 @@ export default function DocsHome() {
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5">
                       <h3 className="font-semibold text-sm">{g.title}</h3>
-                      <ArrowRight className="h-3 w-3 text-text-tertiary group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+                      <ArrowRight className="h-3 w-3 text-neutral-400 dark:text-neutral-500 group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all" />
                     </div>
-                    <p className="text-sm text-text-secondary mt-0.5 leading-relaxed">
+                    <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5 leading-relaxed">
                       {g.description}
                     </p>
                   </div>
@@ -121,7 +121,7 @@ export default function DocsHome() {
       </div>
 
       <h2 id="sdks" className="text-xl font-semibold mb-3">SDKs</h2>
-      <p className="text-text-secondary mb-3">
+      <p className="text-neutral-500 dark:text-neutral-400 mb-3">
         Typed clients are available for all three major server languages:
       </p>
       <div className="grid gap-2 sm:grid-cols-3 mb-10">
@@ -167,11 +167,11 @@ function SdkCard({
   registry: string;
 }) {
   return (
-    <div className="rounded-xl border border-border bg-surface-raised px-4 py-3 shadow-sm hover:shadow-md transition-shadow">
+    <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-4 py-3 shadow-sm hover:shadow-md transition-shadow">
       <p className="text-sm font-medium">{lang}</p>
-      <p className="text-xs text-text-secondary mt-0.5">
-        <code className="font-mono bg-surface-sunken px-1.5 py-0.5 rounded text-xs">{pkg}</code>{" "}
-        <span className="text-text-tertiary">({registry})</span>
+      <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
+        <code className="font-mono bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded text-xs">{pkg}</code>{" "}
+        <span className="text-neutral-400 dark:text-neutral-500">({registry})</span>
       </p>
     </div>
   );

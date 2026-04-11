@@ -90,7 +90,7 @@ export default function ApiKeysPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold">API Keys</h1>
-          <p className="text-text-secondary text-sm mt-1">
+          <p className="text-neutral-500 dark:text-neutral-400 text-sm mt-1">
             Create and manage API keys for programmatic access.
           </p>
         </div>
@@ -110,7 +110,7 @@ export default function ApiKeysPage() {
                   <Check className="h-4 w-4 text-green-600" />
                   <p className="font-medium">Key created</p>
                 </div>
-                <p className="text-xs text-text-secondary mb-3">
+                <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-3">
                   Copy this key now — it won&apos;t be shown again.
                 </p>
                 <div className="flex items-center gap-2 mb-4">
@@ -168,7 +168,7 @@ export default function ApiKeysPage() {
       {/* Keys list */}
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-5 w-5 animate-spin text-text-tertiary" />
+          <Loader2 className="h-5 w-5 animate-spin text-neutral-400 dark:text-neutral-500" />
         </div>
       ) : error ? (
         <div className="flex items-center gap-2 py-12 justify-center text-sm text-error">
@@ -176,7 +176,7 @@ export default function ApiKeysPage() {
           {error}
         </div>
       ) : data?.data?.length === 0 ? (
-        <div className="text-center py-12 text-text-secondary text-sm">
+        <div className="text-center py-12 text-neutral-500 dark:text-neutral-400 text-sm">
           No API keys yet. Create one to get started.
         </div>
       ) : (
@@ -184,20 +184,20 @@ export default function ApiKeysPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left px-4 py-3 font-medium text-text-secondary">
+                <tr className="border-b border-neutral-200 dark:border-neutral-800">
+                  <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
                     Name
                   </th>
-                  <th className="text-left px-4 py-3 font-medium text-text-secondary">
+                  <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
                     Fingerprint
                   </th>
-                  <th className="text-left px-4 py-3 font-medium text-text-secondary">
+                  <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
                     Status
                   </th>
-                  <th className="text-left px-4 py-3 font-medium text-text-secondary">
+                  <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
                     Last used
                   </th>
-                  <th className="text-left px-4 py-3 font-medium text-text-secondary">
+                  <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
                     Created
                   </th>
                   <th className="px-4 py-3 w-10" />
@@ -207,15 +207,15 @@ export default function ApiKeysPage() {
                 {data?.data?.map((key) => (
                   <tr
                     key={key.id}
-                    className="border-b border-border last:border-0 hover:bg-surface-sunken transition-colors"
+                    className="border-b border-neutral-200 dark:border-neutral-800 last:border-0 hover:bg-neutral-50 dark:bg-neutral-950 transition-colors"
                   >
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
-                        <Key className="h-3.5 w-3.5 text-text-tertiary" />
+                        <Key className="h-3.5 w-3.5 text-neutral-400 dark:text-neutral-500" />
                         {key.name}
                       </div>
                     </td>
-                    <td className="px-4 py-3 font-mono text-xs text-text-secondary">
+                    <td className="px-4 py-3 font-mono text-xs text-neutral-500 dark:text-neutral-400">
                       {key.fingerprint}
                     </td>
                     <td className="px-4 py-3">
@@ -223,12 +223,12 @@ export default function ApiKeysPage() {
                         {key.revoked ? "revoked" : "active"}
                       </Badge>
                     </td>
-                    <td className="px-4 py-3 text-text-secondary">
+                    <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">
                       {key.last_used_at
                         ? new Date(key.last_used_at).toLocaleDateString()
                         : "Never"}
                     </td>
-                    <td className="px-4 py-3 text-text-secondary">
+                    <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">
                       {new Date(key.created_at).toLocaleDateString()}
                     </td>
                     <td className="px-4 py-3">
@@ -236,7 +236,7 @@ export default function ApiKeysPage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-text-tertiary hover:text-error"
+                          className="h-8 w-8 text-neutral-400 dark:text-neutral-500 hover:text-error"
                           onClick={() => handleRevoke(key.id)}
                         >
                           <Trash2 className="h-3.5 w-3.5" />

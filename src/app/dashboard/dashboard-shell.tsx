@@ -44,12 +44,12 @@ function Sidebar() {
   const { session, logout } = useAuth();
 
   return (
-    <aside className="hidden md:flex w-56 flex-col border-r border-border bg-surface-sunken">
-      <div className="px-4 py-4 border-b border-border">
-        <p className="text-sm font-medium truncate">
+    <aside className="hidden md:flex w-56 flex-col border-r border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950">
+      <div className="px-4 py-4 border-b border-neutral-200 dark:border-neutral-800">
+        <p className="text-sm font-medium truncate text-neutral-900 dark:text-neutral-100">
           {session?.client.name}
         </p>
-        <p className="text-xs text-text-tertiary truncate mt-0.5">
+        <p className="text-xs text-neutral-400 dark:text-neutral-500 truncate mt-0.5">
           {session?.client.id}
         </p>
       </div>
@@ -66,8 +66,8 @@ function Sidebar() {
               className={cn(
                 "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-all",
                 active
-                  ? "bg-amber-100/70 text-amber-900 font-medium dark:bg-amber-900/30 dark:text-amber-300"
-                  : "text-text-secondary hover:text-text hover:bg-surface-raised"
+                  ? "bg-amber-100 text-amber-900 font-medium dark:bg-amber-900/30 dark:text-amber-300"
+                  : "text-neutral-500 hover:text-neutral-900 hover:bg-white dark:text-neutral-400 dark:hover:text-neutral-100 dark:hover:bg-neutral-800"
               )}
             >
               <Icon className="h-4 w-4 shrink-0" />
@@ -76,10 +76,10 @@ function Sidebar() {
           );
         })}
       </nav>
-      <div className="px-2 py-3 border-t border-border">
+      <div className="px-2 py-3 border-t border-neutral-200 dark:border-neutral-800">
         <button
           onClick={logout}
-          className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-text-secondary hover:text-text hover:bg-surface-raised transition-all cursor-pointer"
+          className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-neutral-500 hover:text-neutral-900 hover:bg-white dark:text-neutral-400 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 transition-all cursor-pointer"
         >
           <LogOut className="h-4 w-4 shrink-0" />
           Log out

@@ -22,8 +22,8 @@ export default function DashboardOverview() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold">Dashboard</h1>
-        <p className="text-text-secondary mt-1">
+        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">Dashboard</h1>
+        <p className="text-neutral-500 dark:text-neutral-400 mt-1">
           Welcome back. Here&apos;s an overview of your tenant.
         </p>
       </div>
@@ -33,8 +33,8 @@ export default function DashboardOverview() {
         <CardContent className="py-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-semibold">{session?.client.name}</p>
-              <p className="text-sm text-text-secondary mt-0.5">
+              <p className="font-semibold text-neutral-900 dark:text-neutral-100">{session?.client.name}</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">
                 {session?.client.id} &middot; {session?.client.slug}
               </p>
             </div>
@@ -59,32 +59,32 @@ export default function DashboardOverview() {
               : users?.meta?.total_count?.toString() ?? users?.data?.length?.toString() ?? "0"
           }
           color="text-amber-600 dark:text-amber-400"
-          bg="bg-amber-50 dark:bg-amber-900/20"
+          bg="bg-amber-50 dark:bg-amber-500/10"
         />
         <StatCard
           icon={Activity}
           label="Signals (24h)"
           value="-"
           color="text-teal-600 dark:text-teal-400"
-          bg="bg-teal-50 dark:bg-teal-900/20"
+          bg="bg-teal-50 dark:bg-teal-500/10"
         />
         <StatCard
           icon={Brain}
           label="Clusters"
           value="-"
           color="text-violet-600 dark:text-violet-400"
-          bg="bg-violet-50 dark:bg-violet-900/20"
+          bg="bg-violet-50 dark:bg-violet-500/10"
         />
         <StatCard
           icon={BarChart3}
           label="Events (24h)"
           value="-"
           color="text-emerald-600 dark:text-emerald-400"
-          bg="bg-emerald-50 dark:bg-emerald-900/20"
+          bg="bg-emerald-50 dark:bg-emerald-500/10"
         />
       </div>
 
-      <p className="mt-8 text-sm text-text-tertiary">
+      <p className="mt-8 text-sm text-neutral-400 dark:text-neutral-500">
         Detailed analytics are available once your tenant has activity. Start by
         creating users and recording signals.
       </p>
@@ -110,15 +110,15 @@ function StatCard({
       <CardContent className="py-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-text-secondary">{label}</p>
+            <p className="text-sm text-neutral-500 dark:text-neutral-400">{label}</p>
             {value === undefined ? (
-              <Loader2 className="h-4 w-4 animate-spin text-text-tertiary mt-1" />
+              <Loader2 className="h-4 w-4 animate-spin text-neutral-400 mt-1" />
             ) : (
-              <p className="text-2xl font-bold mt-1">{value}</p>
+              <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-50 mt-1">{value}</p>
             )}
           </div>
-          <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${bg} ${color}`}>
-            <Icon className="h-5 w-5" />
+          <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${bg}`}>
+            <Icon className={`h-5 w-5 ${color}`} />
           </div>
         </div>
       </CardContent>

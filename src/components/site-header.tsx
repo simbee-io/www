@@ -14,14 +14,14 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-surface/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/80 backdrop-blur-xl dark:border-neutral-800 dark:bg-neutral-950/80">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6">
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2.5 font-semibold group">
             <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 shadow-sm group-hover:shadow-md transition-shadow">
               <HexIcon className="h-4 w-4 text-white" />
             </span>
-            <span>Simbee</span>
+            <span className="dark:text-neutral-100">Simbee</span>
           </Link>
           <nav className="hidden sm:flex items-center gap-1">
             {navItems.map(({ href, label }) => (
@@ -31,8 +31,8 @@ export function SiteHeader() {
                 className={cn(
                   "px-3 py-1.5 text-sm rounded-lg transition-all",
                   pathname.startsWith(href)
-                    ? "text-text bg-surface-sunken font-medium"
-                    : "text-text-secondary hover:text-text hover:bg-surface-sunken"
+                    ? "text-neutral-900 bg-neutral-100 font-medium dark:text-neutral-100 dark:bg-neutral-800"
+                    : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:text-neutral-100 dark:hover:bg-neutral-800"
                 )}
               >
                 {label}

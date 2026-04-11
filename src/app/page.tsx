@@ -23,72 +23,80 @@ const primitives = [
     name: "Vocabulary",
     description:
       "Define your domain's taxonomy with tags and topics. The shared language that all other primitives reference.",
-    color: "from-amber-500/20 to-amber-600/5",
-    iconBg: "bg-amber-500/10 text-amber-600 dark:bg-amber-400/10 dark:text-amber-400",
-    accent: "group-hover:border-amber-400/50",
+    gradient: "from-amber-500 to-orange-500",
+    bg: "bg-amber-500/10 dark:bg-amber-500/15",
+    text: "text-amber-600 dark:text-amber-400",
+    border: "border-amber-200 dark:border-amber-800/50",
   },
   {
     icon: Activity,
     name: "Signals",
     description:
       "Capture behavioral events — likes, purchases, enrollments, views. Configurable signal types that model any user action.",
-    color: "from-orange-500/20 to-orange-600/5",
-    iconBg: "bg-orange-500/10 text-orange-600 dark:bg-orange-400/10 dark:text-orange-400",
-    accent: "group-hover:border-orange-400/50",
+    gradient: "from-orange-500 to-red-500",
+    bg: "bg-orange-500/10 dark:bg-orange-500/15",
+    text: "text-orange-600 dark:text-orange-400",
+    border: "border-orange-200 dark:border-orange-800/50",
   },
   {
     icon: Network,
     name: "Affinities",
     description:
       "Computed relationship strengths between users and your vocabulary. Signals in, structured relationships out.",
-    color: "from-teal-500/20 to-teal-600/5",
-    iconBg: "bg-teal-500/10 text-teal-600 dark:bg-teal-400/10 dark:text-teal-400",
-    accent: "group-hover:border-teal-400/50",
+    gradient: "from-teal-500 to-cyan-500",
+    bg: "bg-teal-500/10 dark:bg-teal-500/15",
+    text: "text-teal-600 dark:text-teal-400",
+    border: "border-teal-200 dark:border-teal-800/50",
   },
   {
     icon: Target,
     name: "Scoring",
     description:
       'Configurable ranking presets that control what "relevant" means. Different presets, different results, same data.',
-    color: "from-violet-500/20 to-violet-600/5",
-    iconBg: "bg-violet-500/10 text-violet-600 dark:bg-violet-400/10 dark:text-violet-400",
-    accent: "group-hover:border-violet-400/50",
+    gradient: "from-violet-500 to-purple-500",
+    bg: "bg-violet-500/10 dark:bg-violet-500/15",
+    text: "text-violet-600 dark:text-violet-400",
+    border: "border-violet-200 dark:border-violet-800/50",
   },
   {
     icon: Brain,
     name: "Clustering",
     description:
       "Automatic user segmentation via FAISS + HDBSCAN. Groups form from behavior, not manual rules.",
-    color: "from-rose-500/20 to-rose-600/5",
-    iconBg: "bg-rose-500/10 text-rose-600 dark:bg-rose-400/10 dark:text-rose-400",
-    accent: "group-hover:border-rose-400/50",
+    gradient: "from-rose-500 to-pink-500",
+    bg: "bg-rose-500/10 dark:bg-rose-500/15",
+    text: "text-rose-600 dark:text-rose-400",
+    border: "border-rose-200 dark:border-rose-800/50",
   },
   {
     icon: Radio,
     name: "Campaigns",
     description:
       "Targeted content delivery with budget management, item targeting, and impression tracking.",
-    color: "from-sky-500/20 to-sky-600/5",
-    iconBg: "bg-sky-500/10 text-sky-600 dark:bg-sky-400/10 dark:text-sky-400",
-    accent: "group-hover:border-sky-400/50",
+    gradient: "from-sky-500 to-blue-500",
+    bg: "bg-sky-500/10 dark:bg-sky-500/15",
+    text: "text-sky-600 dark:text-sky-400",
+    border: "border-sky-200 dark:border-sky-800/50",
   },
   {
     icon: Zap,
     name: "Feed",
     description:
       "Personalized content streams ranked by scoring presets. The composition of signals, affinities, and scoring into a product feature.",
-    color: "from-yellow-500/20 to-yellow-600/5",
-    iconBg: "bg-yellow-500/10 text-yellow-600 dark:bg-yellow-400/10 dark:text-yellow-400",
-    accent: "group-hover:border-yellow-400/50",
+    gradient: "from-yellow-500 to-amber-500",
+    bg: "bg-yellow-500/10 dark:bg-yellow-500/15",
+    text: "text-yellow-600 dark:text-yellow-400",
+    border: "border-yellow-200 dark:border-yellow-800/50",
   },
   {
     icon: BarChart3,
     name: "Analytics",
     description:
       "Aggregate insights from event streams. Engagement trends, affinity coverage, cluster composition, campaign performance.",
-    color: "from-emerald-500/20 to-emerald-600/5",
-    iconBg: "bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-400",
-    accent: "group-hover:border-emerald-400/50",
+    gradient: "from-emerald-500 to-green-500",
+    bg: "bg-emerald-500/10 dark:bg-emerald-500/15",
+    text: "text-emerald-600 dark:text-emerald-400",
+    border: "border-emerald-200 dark:border-emerald-800/50",
   },
 ] as const;
 
@@ -137,24 +145,32 @@ const architectureFeatures = [
     title: "Encrypted by default",
     description:
       "All PII is encrypted at rest via ShrouDB Cipher. Field-level encryption, blind search indexes, zero plaintext storage.",
+    color: "text-rose-600 dark:text-rose-400",
+    bg: "bg-rose-50 dark:bg-rose-500/10",
   },
   {
     icon: Users,
     title: "Multi-tenant isolation",
     description:
       "Every API call is scoped to a client. Full data isolation, per-tenant configuration, independent scaling.",
+    color: "text-sky-600 dark:text-sky-400",
+    bg: "bg-sky-50 dark:bg-sky-500/10",
   },
   {
     icon: ShieldCheck,
     title: "Consent layers",
     description:
       "Scope what data is visible and matchable. Different interaction tiers for different trust levels, built into the data model.",
+    color: "text-emerald-600 dark:text-emerald-400",
+    bg: "bg-emerald-50 dark:bg-emerald-500/10",
   },
   {
     icon: Layers,
     title: "Composable tiers",
     description:
       "Start with the graph — signals, affinities, vocabulary. Add discovery when you need scoring, clustering, campaigns, and feed.",
+    color: "text-violet-600 dark:text-violet-400",
+    bg: "bg-violet-50 dark:bg-violet-500/10",
   },
 ] as const;
 
@@ -163,18 +179,22 @@ export default function LandingPage() {
     <div>
       {/* ── Hero ── */}
       <section className="relative overflow-hidden">
-        <HeroBackground />
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-50 to-neutral-50 dark:from-neutral-950 dark:to-neutral-950" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-gradient-to-b from-amber-200/30 to-transparent rounded-full blur-3xl dark:from-amber-500/8 dark:to-transparent" />
+          <HeroHexGrid />
+        </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 pt-20 pb-24 sm:pt-28 sm:pb-32">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-200/60 bg-amber-50/80 px-3.5 py-1.5 text-sm text-amber-800 dark:border-amber-800/40 dark:bg-amber-950/50 dark:text-amber-300 mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3.5 py-1.5 text-sm text-amber-800 dark:border-amber-800/50 dark:bg-amber-950/50 dark:text-amber-300 mb-6">
               <HexIcon className="h-3.5 w-3.5" />
               <span>API platform for user intelligence</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] text-neutral-900 dark:text-neutral-50">
               Turn user behavior into{" "}
               <span className="text-gradient">structured relationships</span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-text-secondary max-w-2xl leading-relaxed">
+            <p className="mt-6 text-lg sm:text-xl text-neutral-500 dark:text-neutral-400 max-w-2xl leading-relaxed">
               Composable primitives — signals, affinities, scoring, clustering,
               campaigns, and feed — that your application assembles into
               personalization, discovery, and analytics features.
@@ -190,7 +210,7 @@ export default function LandingPage() {
                 <Link href="/docs">Read the docs</Link>
               </Button>
             </div>
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-text-tertiary">
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-neutral-400 dark:text-neutral-500">
               <span className="flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
                 Free tier available
@@ -209,16 +229,16 @@ export default function LandingPage() {
       </section>
 
       {/* ── Primitives ── */}
-      <section className="py-20 sm:py-28">
+      <section className="py-20 sm:py-28 bg-neutral-50 dark:bg-neutral-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="max-w-2xl mb-14">
-            <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
+            <p className="text-sm font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-3">
               Building blocks
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
               Composable primitives
             </h2>
-            <p className="mt-4 text-lg text-text-secondary">
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400">
               Eight building blocks that combine differently for every
               application. Define your domain, capture behavior, and let the
               platform compute the relationships.
@@ -228,20 +248,17 @@ export default function LandingPage() {
             {primitives.map((p) => (
               <div
                 key={p.name}
-                className={`group relative rounded-xl border border-border bg-surface-raised p-5 transition-all hover:shadow-lg ${p.accent}`}
+                className={`group relative rounded-xl border ${p.border} bg-white p-5 transition-all hover:shadow-lg dark:bg-neutral-900`}
               >
-                <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${p.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
-                <div className="relative">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className={`flex h-9 w-9 items-center justify-center rounded-lg ${p.iconBg}`}>
-                      <p.icon className="h-[18px] w-[18px]" />
-                    </div>
-                    <h3 className="font-semibold">{p.name}</h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${p.bg}`}>
+                    <p.icon className={`h-5 w-5 ${p.text}`} />
                   </div>
-                  <p className="text-sm text-text-secondary leading-relaxed">
-                    {p.description}
-                  </p>
+                  <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">{p.name}</h3>
                 </div>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                  {p.description}
+                </p>
               </div>
             ))}
           </div>
@@ -249,16 +266,16 @@ export default function LandingPage() {
       </section>
 
       {/* ── How it works ── */}
-      <section className="py-20 sm:py-28 bg-surface-sunken">
+      <section className="py-20 sm:py-28 bg-white dark:bg-neutral-900/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="max-w-2xl mb-14">
-            <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
+            <p className="text-sm font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-3">
               Three steps
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
               How it works
             </h2>
-            <p className="mt-4 text-lg text-text-secondary">
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400">
               From signup to personalized experiences. The platform handles the
               computation — you define what matters.
             </p>
@@ -300,16 +317,16 @@ export default function LandingPage() {
       </section>
 
       {/* ── Use cases ── */}
-      <section className="py-20 sm:py-28">
+      <section className="py-20 sm:py-28 bg-neutral-50 dark:bg-neutral-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="max-w-2xl mb-12">
-            <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
+            <p className="text-sm font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-3">
               Use cases
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
               Built for every domain
             </h2>
-            <p className="mt-4 text-lg text-text-secondary">
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400">
               The same primitives, different compositions. Simbee is not a
               matching API — it is a toolkit that adapts to your application.
             </p>
@@ -318,17 +335,17 @@ export default function LandingPage() {
             {useCases.map((uc) => (
               <div
                 key={uc.title}
-                className="group rounded-xl border border-border bg-surface-raised p-6 transition-all hover:shadow-lg hover:border-border-strong"
+                className="rounded-xl border border-neutral-200 bg-white p-6 transition-all hover:shadow-lg hover:border-neutral-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700"
               >
-                <h3 className="font-semibold mb-2">{uc.title}</h3>
-                <p className="text-sm text-text-secondary mb-4 leading-relaxed">
+                <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">{uc.title}</h3>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4 leading-relaxed">
                   {uc.description}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {uc.primitives.map((p) => (
                     <span
                       key={p}
-                      className="inline-flex items-center rounded-md bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-200/60 dark:bg-amber-950/40 dark:text-amber-400 dark:ring-amber-800/40"
+                      className="inline-flex items-center rounded-md bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"
                     >
                       {p}
                     </span>
@@ -341,16 +358,16 @@ export default function LandingPage() {
       </section>
 
       {/* ── Architecture ── */}
-      <section className="py-20 sm:py-28 bg-surface-sunken">
+      <section className="py-20 sm:py-28 bg-white dark:bg-neutral-900/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="max-w-2xl mb-14">
-            <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
+            <p className="text-sm font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-3">
               Infrastructure
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
               Production-grade from day one
             </h2>
-            <p className="mt-4 text-lg text-text-secondary">
+            <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400">
               API-first, multi-tenant, encryption by default. Designed for
               applications that handle real user data.
             </p>
@@ -359,14 +376,14 @@ export default function LandingPage() {
             {architectureFeatures.map((f) => (
               <div
                 key={f.title}
-                className="flex gap-4 rounded-xl bg-surface-raised border border-border p-5 transition-all hover:shadow-md"
+                className="flex gap-4 rounded-xl border border-neutral-200 bg-neutral-50 p-5 dark:border-neutral-800 dark:bg-neutral-900"
               >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-100 to-amber-50 text-amber-700 shadow-sm dark:from-amber-900/40 dark:to-amber-950/40 dark:text-amber-400">
-                  <f.icon className="h-5 w-5" />
+                <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${f.bg}`}>
+                  <f.icon className={`h-5 w-5 ${f.color}`} />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">{f.title}</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed">
+                  <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-1">{f.title}</h3>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
                     {f.description}
                   </p>
                 </div>
@@ -377,19 +394,16 @@ export default function LandingPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-20 sm:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-surface via-amber-50/30 to-surface dark:from-surface dark:via-amber-950/10 dark:to-surface" />
-        </div>
+      <section className="py-20 sm:py-28 bg-neutral-50 dark:bg-neutral-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 text-center">
           <div className="mx-auto max-w-md">
             <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 shadow-lg shadow-amber-500/20 mb-6">
               <HexIcon className="h-7 w-7 text-white" />
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50 mb-4">
               Start building
             </h2>
-            <p className="text-lg text-text-secondary mb-8">
+            <p className="text-lg text-neutral-500 dark:text-neutral-400 mb-8">
               Create a tenant, get your API key, and make your first call in
               under a minute. Free tier, no credit card required.
             </p>
@@ -428,15 +442,15 @@ function StepCard({
   code: string;
 }) {
   return (
-    <div className="rounded-xl border border-border bg-surface-raised overflow-hidden shadow-sm transition-shadow hover:shadow-lg">
+    <div className="rounded-xl border border-neutral-200 bg-white overflow-hidden dark:border-neutral-800 dark:bg-neutral-900 transition-shadow hover:shadow-lg">
       <div className="p-6 pb-4">
         <div className="flex items-center gap-3 mb-3">
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-xs font-bold text-white shadow-sm">
             {step}
           </span>
-          <h3 className="font-semibold text-lg">{title}</h3>
+          <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100">{title}</h3>
         </div>
-        <p className="text-sm text-text-secondary leading-relaxed">
+        <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
           {description}
         </p>
       </div>
@@ -449,43 +463,36 @@ function StepCard({
   );
 }
 
-/* ── Hero background ── */
+/* ── Hero hex grid ── */
 
-function HeroBackground() {
+function HeroHexGrid() {
   return (
-    <div className="absolute inset-0 -z-10">
-      <div className="absolute inset-0 bg-gradient-to-b from-amber-50/80 via-surface to-surface dark:from-amber-950/20 dark:via-surface dark:to-surface" />
-      {/* Gradient orbs */}
-      <div className="absolute top-[-20%] right-[-10%] h-[600px] w-[600px] rounded-full bg-amber-300/15 blur-3xl dark:bg-amber-500/5" />
-      <div className="absolute top-[10%] right-[20%] h-[400px] w-[400px] rounded-full bg-teal-300/10 blur-3xl dark:bg-teal-500/5" />
-      {/* Hex grid */}
-      <svg
-        className="absolute top-0 right-0 w-[800px] h-[600px] opacity-[0.04] dark:opacity-[0.06]"
-        viewBox="0 0 800 600"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        {Array.from({ length: 8 }).map((_, row) =>
-          Array.from({ length: 6 }).map((_, col) => {
-            const x = col * 100 + (row % 2 === 0 ? 0 : 50);
-            const y = row * 86;
-            return (
-              <polygon
-                key={`${row}-${col}`}
-                points={hexPoints(x + 50, y + 50, 48)}
-                stroke="currentColor"
-                strokeWidth="1"
-              />
-            );
-          })
-        )}
-      </svg>
-    </div>
+    <svg
+      className="absolute top-0 right-0 w-[800px] h-[600px] opacity-[0.06] dark:opacity-[0.08] text-amber-600 dark:text-amber-400"
+      viewBox="0 0 800 600"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      {Array.from({ length: 8 }).map((_, row) =>
+        Array.from({ length: 6 }).map((_, col) => {
+          const x = col * 100 + (row % 2 === 0 ? 0 : 50);
+          const y = row * 86;
+          return (
+            <polygon
+              key={`${row}-${col}`}
+              points={hexPoints(x + 50, y + 50, 48)}
+              stroke="currentColor"
+              strokeWidth="1"
+            />
+          );
+        })
+      )}
+    </svg>
   );
 }
 
-/* ── Hex icon (brand mark) ── */
+/* ── Hex icon ── */
 
 function HexIcon({ className }: { className?: string }) {
   return (

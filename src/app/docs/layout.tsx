@@ -27,36 +27,36 @@ export default function DocsLayout({
   return (
     <div className="flex min-h-[calc(100vh-3.5rem)]">
       {/* Sidebar */}
-      <aside className="hidden md:block w-56 border-r border-border bg-surface-sunken">
+      <aside className="hidden md:block w-56 border-r border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950">
         <nav className="px-3 py-6 space-y-0.5">
-          <p className="px-3 text-xs font-semibold text-text-tertiary uppercase tracking-wider mb-3">
+          <p className="px-3 text-xs font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-3">
             Guides
           </p>
           {docsNav.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className="block px-3 py-1.5 text-sm rounded-lg text-text-secondary hover:text-text hover:bg-surface-raised transition-all"
+              className="block px-3 py-1.5 text-sm rounded-lg text-neutral-500 hover:text-neutral-900 hover:bg-white dark:text-neutral-400 dark:hover:text-neutral-100 dark:hover:bg-neutral-800 transition-all"
             >
               {label}
             </Link>
           ))}
           <div className="pt-4">
-            <p className="px-3 text-xs font-semibold text-text-tertiary uppercase tracking-wider mb-3">
+            <p className="px-3 text-xs font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-3">
               SDKs
             </p>
-            <div className="px-3 space-y-1.5 text-sm text-text-secondary">
+            <div className="px-3 space-y-1.5 text-sm text-neutral-500 dark:text-neutral-400">
               <p>
-                <code className="text-xs font-mono bg-surface-inset px-1.5 py-0.5 rounded">@simbee-io/client</code>{" "}
-                <span className="text-text-tertiary text-xs">npm</span>
+                <code className="text-xs font-mono bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded">@simbee-io/client</code>{" "}
+                <span className="text-neutral-400 dark:text-neutral-500 text-xs">npm</span>
               </p>
               <p>
-                <code className="text-xs font-mono bg-surface-inset px-1.5 py-0.5 rounded">simbee-client</code>{" "}
-                <span className="text-text-tertiary text-xs">gem</span>
+                <code className="text-xs font-mono bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded">simbee-client</code>{" "}
+                <span className="text-neutral-400 dark:text-neutral-500 text-xs">gem</span>
               </p>
               <p>
-                <code className="text-xs font-mono bg-surface-inset px-1.5 py-0.5 rounded">simbee-client</code>{" "}
-                <span className="text-text-tertiary text-xs">pip</span>
+                <code className="text-xs font-mono bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded">simbee-client</code>{" "}
+                <span className="text-neutral-400 dark:text-neutral-500 text-xs">pip</span>
               </p>
             </div>
           </div>

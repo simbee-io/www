@@ -26,7 +26,7 @@ export default function ScoringPage() {
     <div>
       <div className="mb-6">
         <h1 className="text-2xl font-bold">Scoring</h1>
-        <p className="text-text-secondary text-sm mt-1">
+        <p className="text-neutral-500 dark:text-neutral-400 text-sm mt-1">
           Scoring presets control how users are ranked. Different presets produce
           different results from the same data.
         </p>
@@ -34,7 +34,7 @@ export default function ScoringPage() {
 
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-5 w-5 animate-spin text-text-tertiary" />
+          <Loader2 className="h-5 w-5 animate-spin text-neutral-400 dark:text-neutral-500" />
         </div>
       ) : error ? (
         <div className="flex items-center gap-2 py-12 justify-center text-sm text-error">
@@ -42,7 +42,7 @@ export default function ScoringPage() {
           {error}
         </div>
       ) : data?.data?.length === 0 ? (
-        <div className="text-center py-12 text-text-secondary text-sm">
+        <div className="text-center py-12 text-neutral-500 dark:text-neutral-400 text-sm">
           No scoring presets configured. Presets are created via the API.
         </div>
       ) : (
@@ -52,7 +52,7 @@ export default function ScoringPage() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <SlidersHorizontal className="h-4 w-4 text-primary" />
+                    <SlidersHorizontal className="h-4 w-4 text-amber-600 dark:text-amber-400" />
                     <CardTitle>{preset.name}</CardTitle>
                   </div>
                   <Badge variant={preset.active ? "success" : "secondary"}>
@@ -64,17 +64,17 @@ export default function ScoringPage() {
                 )}
               </CardHeader>
               <CardContent>
-                <p className="text-xs font-medium text-text-secondary mb-2">
+                <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400 mb-2">
                   Weights
                 </p>
                 <div className="space-y-1.5">
                   {Object.entries(preset.weights).map(([key, val]) => (
                     <div key={key} className="flex items-center justify-between">
-                      <span className="text-sm text-text-secondary">{key}</span>
+                      <span className="text-sm text-neutral-500 dark:text-neutral-400">{key}</span>
                       <div className="flex items-center gap-2">
                         <div className="w-24 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
                           <div
-                            className="h-full rounded-full bg-primary"
+                            className="h-full rounded-full bg-amber-500"
                             style={{ width: `${Math.min(val * 100, 100)}%` }}
                           />
                         </div>

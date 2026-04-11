@@ -50,7 +50,7 @@ export default function UsersPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold">Users</h1>
-          <p className="text-text-secondary text-sm mt-1">
+          <p className="text-neutral-500 dark:text-neutral-400 text-sm mt-1">
             Manage users in your tenant.
           </p>
         </div>
@@ -58,7 +58,7 @@ export default function UsersPage() {
 
       <div className="mb-4">
         <div className="relative max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-tertiary" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-400 dark:text-neutral-500" />
           <Input
             placeholder="Search by external ID..."
             className="pl-9"
@@ -73,7 +73,7 @@ export default function UsersPage() {
 
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-5 w-5 animate-spin text-text-tertiary" />
+          <Loader2 className="h-5 w-5 animate-spin text-neutral-400 dark:text-neutral-500" />
         </div>
       ) : error ? (
         <div className="flex items-center gap-2 py-12 justify-center text-sm text-error">
@@ -81,7 +81,7 @@ export default function UsersPage() {
           {error}
         </div>
       ) : data?.data?.length === 0 ? (
-        <div className="text-center py-12 text-text-secondary text-sm">
+        <div className="text-center py-12 text-neutral-500 dark:text-neutral-400 text-sm">
           {search ? "No users match your search." : "No users yet. Create your first user via the API."}
         </div>
       ) : (
@@ -90,17 +90,17 @@ export default function UsersPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left px-4 py-3 font-medium text-text-secondary">
+                  <tr className="border-b border-neutral-200 dark:border-neutral-800">
+                    <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
                       External ID
                     </th>
-                    <th className="text-left px-4 py-3 font-medium text-text-secondary">
+                    <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
                       ID
                     </th>
-                    <th className="text-left px-4 py-3 font-medium text-text-secondary">
+                    <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
                       Status
                     </th>
-                    <th className="text-left px-4 py-3 font-medium text-text-secondary">
+                    <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
                       Created
                     </th>
                   </tr>
@@ -109,12 +109,12 @@ export default function UsersPage() {
                   {data?.data?.map((user) => (
                     <tr
                       key={user.id}
-                      className="border-b border-border last:border-0 hover:bg-surface-sunken transition-colors"
+                      className="border-b border-neutral-200 dark:border-neutral-800 last:border-0 hover:bg-neutral-50 dark:bg-neutral-950 transition-colors"
                     >
                       <td className="px-4 py-3 font-mono text-xs">
                         {user.external_id}
                       </td>
-                      <td className="px-4 py-3 font-mono text-xs text-text-secondary">
+                      <td className="px-4 py-3 font-mono text-xs text-neutral-500 dark:text-neutral-400">
                         {user.id}
                       </td>
                       <td className="px-4 py-3">
@@ -126,7 +126,7 @@ export default function UsersPage() {
                           {user.status}
                         </Badge>
                       </td>
-                      <td className="px-4 py-3 text-text-secondary">
+                      <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">
                         {new Date(user.created_at).toLocaleDateString()}
                       </td>
                     </tr>
@@ -137,7 +137,7 @@ export default function UsersPage() {
           </Card>
 
           <div className="flex items-center justify-between mt-4">
-            <p className="text-sm text-text-secondary">
+            <p className="text-sm text-neutral-500 dark:text-neutral-400">
               {totalCount > 0 && `${totalCount} user${totalCount === 1 ? "" : "s"}`}
             </p>
             <div className="flex items-center gap-2">
@@ -150,7 +150,7 @@ export default function UsersPage() {
                 <ChevronLeft className="h-4 w-4" />
                 Previous
               </Button>
-              <span className="text-sm text-text-secondary px-2">
+              <span className="text-sm text-neutral-500 dark:text-neutral-400 px-2">
                 Page {page}
               </span>
               <Button

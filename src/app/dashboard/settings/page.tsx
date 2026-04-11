@@ -12,7 +12,7 @@ export default function SettingsPage() {
     <div>
       <div className="mb-6">
         <h1 className="text-2xl font-bold">Settings</h1>
-        <p className="text-text-secondary text-sm mt-1">
+        <p className="text-neutral-500 dark:text-neutral-400 text-sm mt-1">
           Account and tenant configuration.
         </p>
       </div>
@@ -126,7 +126,7 @@ function SettingsRow({
 }) {
   return (
     <div className="flex items-center justify-between">
-      <dt className="text-sm text-text-secondary">{label}</dt>
+      <dt className="text-sm text-neutral-500 dark:text-neutral-400">{label}</dt>
       <dd className={`text-sm ${mono ? "font-mono text-xs" : ""}`}>{value}</dd>
     </div>
   );

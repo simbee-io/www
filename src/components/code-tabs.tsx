@@ -11,7 +11,7 @@ export function CodeTabs({
   const [active, setActive] = useState(0);
 
   return (
-    <div className="my-4 rounded-xl border border-border overflow-hidden shadow-sm">
+    <div className="my-4 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800">
       <div className="flex border-b border-neutral-800 bg-neutral-900">
         {tabs.map((tab, i) => (
           <button

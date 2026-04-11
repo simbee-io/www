@@ -122,7 +122,7 @@ export default function WebhooksPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold">Webhooks</h1>
-          <p className="text-text-secondary text-sm mt-1">
+          <p className="text-neutral-500 dark:text-neutral-400 text-sm mt-1">
             Subscribe to events and receive real-time notifications.
           </p>
         </div>
@@ -154,7 +154,7 @@ export default function WebhooksPage() {
                 {EVENT_TYPES.map((event) => (
                   <label
                     key={event}
-                    className="flex items-center gap-2 px-2 py-1.5 rounded text-xs hover:bg-surface-sunken cursor-pointer"
+                    className="flex items-center gap-2 px-2 py-1.5 rounded text-xs hover:bg-neutral-50 dark:bg-neutral-950 cursor-pointer"
                   >
                     <input
                       type="checkbox"
@@ -169,14 +169,14 @@ export default function WebhooksPage() {
               <div className="flex gap-2 mt-1">
                 <button
                   type="button"
-                  className="text-xs text-primary hover:underline cursor-pointer"
+                  className="text-xs text-amber-600 dark:text-amber-400 hover:underline cursor-pointer"
                   onClick={() => setSelectedEvents(new Set(EVENT_TYPES))}
                 >
                   Select all
                 </button>
                 <button
                   type="button"
-                  className="text-xs text-primary hover:underline cursor-pointer"
+                  className="text-xs text-amber-600 dark:text-amber-400 hover:underline cursor-pointer"
                   onClick={() => setSelectedEvents(new Set())}
                 >
                   Clear
@@ -209,7 +209,7 @@ export default function WebhooksPage() {
       {/* List */}
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-5 w-5 animate-spin text-text-tertiary" />
+          <Loader2 className="h-5 w-5 animate-spin text-neutral-400 dark:text-neutral-500" />
         </div>
       ) : error ? (
         <div className="flex items-center gap-2 py-12 justify-center text-sm text-error">
@@ -217,7 +217,7 @@ export default function WebhooksPage() {
           {error}
         </div>
       ) : data?.data?.length === 0 ? (
-        <div className="text-center py-12 text-text-secondary text-sm">
+        <div className="text-center py-12 text-neutral-500 dark:text-neutral-400 text-sm">
           No webhook subscriptions yet.
         </div>
       ) : (
@@ -227,7 +227,7 @@ export default function WebhooksPage() {
               <div className="p-4 flex items-start justify-between gap-4">
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <Webhook className="h-4 w-4 text-text-tertiary shrink-0" />
+                    <Webhook className="h-4 w-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
                     <code className="text-sm font-mono truncate">
                       {webhook.url}
                     </code>
@@ -248,7 +248,7 @@ export default function WebhooksPage() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 text-text-tertiary hover:text-error shrink-0"
+                  className="h-8 w-8 text-neutral-400 dark:text-neutral-500 hover:text-error shrink-0"
                   onClick={() => handleDelete(webhook.id)}
                 >
                   <Trash2 className="h-3.5 w-3.5" />

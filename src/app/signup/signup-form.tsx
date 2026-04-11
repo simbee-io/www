@@ -78,19 +78,19 @@ export function SignupForm() {
   if (step === "success" && result) {
     return (
       <div className="space-y-6">
-        <div className="rounded-xl border border-border bg-surface-raised p-6 shadow-sm text-center">
+        <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
             <Check className="h-6 w-6 text-green-700 dark:text-green-400" />
           </div>
           <h2 className="text-xl font-semibold mb-1">You&apos;re all set</h2>
-          <p className="text-sm text-text-secondary">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
             Your tenant <strong>{result.clientSlug}</strong> is ready.
           </p>
         </div>
 
-        <div className="rounded-xl border border-border bg-surface-raised p-6 shadow-sm">
+        <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
           <h3 className="font-semibold mb-1">Your API key</h3>
-          <p className="text-xs text-text-secondary mb-3">
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-3">
             This is shown only once. Store it securely.
           </p>
           <div className="flex items-center gap-2">
@@ -107,7 +107,7 @@ export function SignupForm() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-border bg-surface-raised p-6 shadow-sm">
+        <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
           <h3 className="font-semibold mb-3">Quick start</h3>
           <div className="space-y-3">
             <QuickstartStep
@@ -153,7 +153,7 @@ export function SignupForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="rounded-xl border border-border bg-surface-raised p-6 shadow-sm space-y-4">
+      <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm space-y-4">
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
           <Input
@@ -218,9 +218,9 @@ export function SignupForm() {
         {submitting ? "Creating account..." : "Create account"}
       </Button>
 
-      <p className="text-center text-sm text-text-secondary">
+      <p className="text-center text-sm text-neutral-500 dark:text-neutral-400">
         Already have an account?{" "}
-        <Link href="/login" className="text-primary hover:underline">
+        <Link href="/login" className="text-amber-600 dark:text-amber-400 hover:underline">
           Log in
         </Link>
       </p>
@@ -245,12 +245,12 @@ function TierOption({
       onClick={onSelect}
       className={`rounded-xl border p-3 text-left transition-all cursor-pointer ${
         selected
-          ? "border-primary bg-amber-50 shadow-sm dark:bg-amber-950/30"
-          : "border-border hover:border-border-strong hover:shadow-sm"
+          ? "border-amber-500 bg-amber-50 shadow-sm dark:bg-amber-950/30"
+          : "border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:border-neutral-700 hover:shadow-sm"
       }`}
     >
       <div className="text-sm font-medium">{name}</div>
-      <div className="text-xs text-text-secondary mt-0.5">{description}</div>
+      <div className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">{description}</div>
     </button>
   );
 }

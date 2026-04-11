@@ -13,7 +13,7 @@ export default function SignupPage() {
           <HexIcon className="h-6 w-6 text-white" />
         </div>
         <h1 className="text-3xl font-bold tracking-tight">Create your account</h1>
-        <p className="mt-2 text-text-secondary">
+        <p className="mt-2 text-neutral-500 dark:text-neutral-400">
           Get your API key and start building in under a minute.
         </p>
       </div>

@@ -10,29 +10,29 @@ export default function WebhooksPage() {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-2">Webhooks</h1>
-      <p className="text-lg text-text-secondary mb-8">
+      <p className="text-lg text-neutral-500 dark:text-neutral-400 mb-8">
         Simbee delivers webhook notifications when platform events occur. Subscribe
         to event types, verify signatures, and build reactive integrations that
         respond to matches, clustering, and campaign changes in real time.
       </p>
 
-      <nav className="rounded-xl border border-border bg-surface-raised p-4 mb-10">
+      <nav className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4 mb-10">
         <p className="font-semibold text-sm mb-2">On this page</p>
-        <ol className="list-decimal list-inside text-sm space-y-1 text-text-secondary">
-          <li><a href="#subscribing" className="hover:text-text transition-colors">Subscribing</a></li>
-          <li><a href="#event-catalog" className="hover:text-text transition-colors">Event catalog</a></li>
-          <li><a href="#payload-format" className="hover:text-text transition-colors">Payload format</a></li>
-          <li><a href="#signature-verification" className="hover:text-text transition-colors">Signature verification</a></li>
-          <li><a href="#delivery-guarantees" className="hover:text-text transition-colors">Delivery guarantees</a></li>
-          <li><a href="#managing-subscriptions" className="hover:text-text transition-colors">Managing subscriptions</a></li>
-          <li><a href="#integration-examples" className="hover:text-text transition-colors">Integration examples</a></li>
+        <ol className="list-decimal list-inside text-sm space-y-1 text-neutral-500 dark:text-neutral-400">
+          <li><a href="#subscribing" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Subscribing</a></li>
+          <li><a href="#event-catalog" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Event catalog</a></li>
+          <li><a href="#payload-format" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Payload format</a></li>
+          <li><a href="#signature-verification" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Signature verification</a></li>
+          <li><a href="#delivery-guarantees" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Delivery guarantees</a></li>
+          <li><a href="#managing-subscriptions" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Managing subscriptions</a></li>
+          <li><a href="#integration-examples" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Integration examples</a></li>
         </ol>
       </nav>
 
       {/* Subscribing */}
       <section id="subscribing" className="mb-12">
         <h2 className="text-2xl font-semibold mb-3">Subscribing</h2>
-        <p className="mb-4 text-text-secondary">
+        <p className="mb-4 text-neutral-500 dark:text-neutral-400">
           Create a webhook subscription by providing a URL, the event types you
           want to receive, and an optional signing secret for payload
           verification.
@@ -109,51 +109,51 @@ print(result.data.id)  # wh_abc123`,
       {/* Event catalog */}
       <section id="event-catalog" className="mb-12">
         <h2 className="text-2xl font-semibold mb-3">Event catalog</h2>
-        <p className="mb-4 text-text-secondary">
+        <p className="mb-4 text-neutral-500 dark:text-neutral-400">
           Five event types are available for webhook delivery. Internal
           service-to-service events (signal processing, embedding regeneration,
           etc.) are not exposed via webhooks.
         </p>
 
         {/* match.computed */}
-        <div className="rounded-xl border border-border mb-4 overflow-hidden">
-          <div className="px-4 py-3 bg-surface-sunken border-b border-border">
+        <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 mb-4 overflow-hidden">
+          <div className="px-4 py-3 bg-neutral-50 dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
             <code className="text-sm font-semibold">match.computed</code>
           </div>
           <div className="px-4 py-3">
-            <p className="text-sm text-text-secondary mb-3">
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-3">
               Fired when a match is computed between two users. Use this to
               notify users of new matches, trigger downstream workflows, or
               update your application&apos;s match state.
             </p>
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Field</th>
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Type</th>
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Description</th>
+                <tr className="border-b border-neutral-200 dark:border-neutral-800">
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Field</th>
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Type</th>
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Description</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">client_id</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">Tenant identifier</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">Tenant identifier</td>
                 </tr>
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">user_id</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">The user who was matched</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">The user who was matched</td>
                 </tr>
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">matched_user_id</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">The other user in the match</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">The other user in the match</td>
                 </tr>
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">score</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">float</td>
-                  <td className="px-2 py-1.5 text-text-secondary">Match compatibility score (0.0&ndash;1.0)</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">float</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">Match compatibility score (0.0&ndash;1.0)</td>
                 </tr>
               </tbody>
             </table>
@@ -161,44 +161,44 @@ print(result.data.id)  # wh_abc123`,
         </div>
 
         {/* clustering.completed */}
-        <div className="rounded-xl border border-border mb-4 overflow-hidden">
-          <div className="px-4 py-3 bg-surface-sunken border-b border-border">
+        <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 mb-4 overflow-hidden">
+          <div className="px-4 py-3 bg-neutral-50 dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
             <code className="text-sm font-semibold">clustering.completed</code>
           </div>
           <div className="px-4 py-3">
-            <p className="text-sm text-text-secondary mb-3">
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-3">
               Fired when a clustering pipeline run completes successfully. Use
               this to trigger segmentation updates, refresh dashboards, or sync
               cluster assignments to your application.
             </p>
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Field</th>
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Type</th>
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Description</th>
+                <tr className="border-b border-neutral-200 dark:border-neutral-800">
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Field</th>
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Type</th>
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Description</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">client_id</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">Tenant identifier</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">Tenant identifier</td>
                 </tr>
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">consent_layer_id</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">Consent layer the clustering was scoped to</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">Consent layer the clustering was scoped to</td>
                 </tr>
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">clustering_run_id</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">The pipeline run that produced these clusters</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">The pipeline run that produced these clusters</td>
                 </tr>
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">clusters</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">array</td>
-                  <td className="px-2 py-1.5 text-text-secondary">Summary of discovered clusters (IDs, sizes, labels)</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">array</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">Summary of discovered clusters (IDs, sizes, labels)</td>
                 </tr>
               </tbody>
             </table>
@@ -206,38 +206,38 @@ print(result.data.id)  # wh_abc123`,
         </div>
 
         {/* clustering.failed */}
-        <div className="rounded-xl border border-border mb-4 overflow-hidden">
-          <div className="px-4 py-3 bg-surface-sunken border-b border-border">
+        <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 mb-4 overflow-hidden">
+          <div className="px-4 py-3 bg-neutral-50 dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
             <code className="text-sm font-semibold">clustering.failed</code>
           </div>
           <div className="px-4 py-3">
-            <p className="text-sm text-text-secondary mb-3">
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-3">
               Fired when a clustering pipeline run fails. Use this to alert your
               operations team or trigger fallback logic.
             </p>
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Field</th>
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Type</th>
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Description</th>
+                <tr className="border-b border-neutral-200 dark:border-neutral-800">
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Field</th>
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Type</th>
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Description</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">client_id</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">Tenant identifier</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">Tenant identifier</td>
                 </tr>
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">consent_layer_id</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">Consent layer the clustering was scoped to</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">Consent layer the clustering was scoped to</td>
                 </tr>
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">error_details</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">Human-readable error description</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">Human-readable error description</td>
                 </tr>
               </tbody>
             </table>
@@ -245,34 +245,34 @@ print(result.data.id)  # wh_abc123`,
         </div>
 
         {/* campaign.budget_exhausted */}
-        <div className="rounded-xl border border-border mb-4 overflow-hidden">
-          <div className="px-4 py-3 bg-surface-sunken border-b border-border">
+        <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 mb-4 overflow-hidden">
+          <div className="px-4 py-3 bg-neutral-50 dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
             <code className="text-sm font-semibold">campaign.budget_exhausted</code>
           </div>
           <div className="px-4 py-3">
-            <p className="text-sm text-text-secondary mb-3">
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-3">
               Fired when a campaign&apos;s total spend reaches its budget. The
               campaign is automatically completed. Use this to notify campaign
               managers or trigger follow-up campaigns.
             </p>
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Field</th>
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Type</th>
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Description</th>
+                <tr className="border-b border-neutral-200 dark:border-neutral-800">
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Field</th>
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Type</th>
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Description</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">client_id</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">Tenant identifier</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">Tenant identifier</td>
                 </tr>
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">campaign_id</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">The campaign that exhausted its budget</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">The campaign that exhausted its budget</td>
                 </tr>
               </tbody>
             </table>
@@ -280,34 +280,34 @@ print(result.data.id)  # wh_abc123`,
         </div>
 
         {/* cluster.drift_detected */}
-        <div className="rounded-xl border border-border mb-4 overflow-hidden">
-          <div className="px-4 py-3 bg-surface-sunken border-b border-border">
+        <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 mb-4 overflow-hidden">
+          <div className="px-4 py-3 bg-neutral-50 dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
             <code className="text-sm font-semibold">cluster.drift_detected</code>
           </div>
           <div className="px-4 py-3">
-            <p className="text-sm text-text-secondary mb-3">
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-3">
               Fired when a cluster&apos;s composition has shifted significantly
               between runs. Use this to detect changing user segments, trigger
               re-targeting, or alert on behavioral shifts.
             </p>
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Field</th>
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Type</th>
-                  <th className="text-left px-2 py-1.5 font-medium text-text-secondary">Description</th>
+                <tr className="border-b border-neutral-200 dark:border-neutral-800">
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Field</th>
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Type</th>
+                  <th className="text-left px-2 py-1.5 font-medium text-neutral-500 dark:text-neutral-400">Description</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">client_id</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">Tenant identifier</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">Tenant identifier</td>
                 </tr>
                 <tr>
                   <td className="px-2 py-1.5"><code className="text-xs">cluster_id</code></td>
-                  <td className="px-2 py-1.5 text-text-secondary">string</td>
-                  <td className="px-2 py-1.5 text-text-secondary">The cluster that drifted</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">string</td>
+                  <td className="px-2 py-1.5 text-neutral-500 dark:text-neutral-400">The cluster that drifted</td>
                 </tr>
               </tbody>
             </table>
@@ -318,7 +318,7 @@ print(result.data.id)  # wh_abc123`,
       {/* Payload format */}
       <section id="payload-format" className="mb-12">
         <h2 className="text-2xl font-semibold mb-3">Payload format</h2>
-        <p className="mb-4 text-text-secondary">
+        <p className="mb-4 text-neutral-500 dark:text-neutral-400">
           Every webhook delivery is an HTTP POST with a JSON body containing the
           event type, payload data, and a timestamp.
         </p>
@@ -344,23 +344,23 @@ X-Simbee-Signature: a1b2c3d4e5f6...
         <h3 className="text-lg font-semibold mb-2">Headers</h3>
         <table className="w-full text-sm mb-4">
           <thead>
-            <tr className="border-b border-border bg-surface-sunken">
-              <th className="text-left px-4 py-2.5 font-medium text-text-secondary">Header</th>
-              <th className="text-left px-4 py-2.5 font-medium text-text-secondary">Description</th>
+            <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950">
+              <th className="text-left px-4 py-2.5 font-medium text-neutral-500 dark:text-neutral-400">Header</th>
+              <th className="text-left px-4 py-2.5 font-medium text-neutral-500 dark:text-neutral-400">Description</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
             <tr>
               <td className="px-4 py-2.5"><code className="text-xs">Content-Type</code></td>
-              <td className="px-4 py-2.5 text-text-secondary">Always <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">application/json</code></td>
+              <td className="px-4 py-2.5 text-neutral-500 dark:text-neutral-400">Always <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">application/json</code></td>
             </tr>
             <tr>
               <td className="px-4 py-2.5"><code className="text-xs">X-Simbee-Event</code></td>
-              <td className="px-4 py-2.5 text-text-secondary">The event type (e.g. <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">match.computed</code>)</td>
+              <td className="px-4 py-2.5 text-neutral-500 dark:text-neutral-400">The event type (e.g. <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">match.computed</code>)</td>
             </tr>
             <tr>
               <td className="px-4 py-2.5"><code className="text-xs">X-Simbee-Signature</code></td>
-              <td className="px-4 py-2.5 text-text-secondary">HMAC-SHA256 hex digest of the request body (present only if a secret was provided)</td>
+              <td className="px-4 py-2.5 text-neutral-500 dark:text-neutral-400">HMAC-SHA256 hex digest of the request body (present only if a secret was provided)</td>
             </tr>
           </tbody>
         </table>
@@ -369,10 +369,10 @@ X-Simbee-Signature: a1b2c3d4e5f6...
       {/* Signature verification */}
       <section id="signature-verification" className="mb-12">
         <h2 className="text-2xl font-semibold mb-3">Signature verification</h2>
-        <p className="mb-4 text-text-secondary">
-          If you provided a <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">secret</code> when
+        <p className="mb-4 text-neutral-500 dark:text-neutral-400">
+          If you provided a <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">secret</code> when
           creating the subscription, every delivery includes an{" "}
-          <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">X-Simbee-Signature</code> header.
+          <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">X-Simbee-Signature</code> header.
           The signature is the HMAC-SHA256 hex digest of the raw request body
           using your secret as the key. Always verify signatures before
           processing webhook payloads.
@@ -473,11 +473,11 @@ def handle_webhook():
           ]}
         />
 
-        <div className="text-sm mt-4 p-3 rounded-md border border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-amber-950/30 text-text-secondary">
+        <div className="text-sm mt-4 p-3 rounded-md border border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-amber-950/30 text-neutral-500 dark:text-neutral-400">
           <strong>Always use constant-time comparison</strong> (
-          <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">timingSafeEqual</code>,{" "}
-          <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">secure_compare</code>,{" "}
-          <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">compare_digest</code>)
+          <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">timingSafeEqual</code>,{" "}
+          <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">secure_compare</code>,{" "}
+          <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">compare_digest</code>)
           when verifying signatures. Standard string equality is vulnerable to
           timing attacks.
         </div>
@@ -488,7 +488,7 @@ def handle_webhook():
         <h2 className="text-2xl font-semibold mb-3">Delivery guarantees</h2>
 
         <h3 className="text-lg font-semibold mb-2">At-least-once delivery</h3>
-        <p className="mb-4 text-text-secondary">
+        <p className="mb-4 text-neutral-500 dark:text-neutral-400">
           Simbee guarantees at-least-once delivery. If your endpoint returns a
           non-2xx status code or times out, the delivery is retried. This means
           your handler may receive the same event more than once &mdash; design
@@ -496,51 +496,51 @@ def handle_webhook():
         </p>
 
         <h3 className="text-lg font-semibold mb-2">Retry schedule</h3>
-        <p className="mb-3 text-text-secondary">
+        <p className="mb-3 text-neutral-500 dark:text-neutral-400">
           Failed deliveries are retried up to 5 times with exponential backoff:
         </p>
         <table className="w-full text-sm mb-4">
           <thead>
-            <tr className="border-b border-border bg-surface-sunken">
-              <th className="text-left px-4 py-2.5 font-medium text-text-secondary">Attempt</th>
-              <th className="text-left px-4 py-2.5 font-medium text-text-secondary">Delay</th>
+            <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950">
+              <th className="text-left px-4 py-2.5 font-medium text-neutral-500 dark:text-neutral-400">Attempt</th>
+              <th className="text-left px-4 py-2.5 font-medium text-neutral-500 dark:text-neutral-400">Delay</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
             <tr>
               <td className="px-4 py-2.5">1st retry</td>
-              <td className="px-4 py-2.5 text-text-secondary">~30 seconds</td>
+              <td className="px-4 py-2.5 text-neutral-500 dark:text-neutral-400">~30 seconds</td>
             </tr>
             <tr>
               <td className="px-4 py-2.5">2nd retry</td>
-              <td className="px-4 py-2.5 text-text-secondary">~1 minute</td>
+              <td className="px-4 py-2.5 text-neutral-500 dark:text-neutral-400">~1 minute</td>
             </tr>
             <tr>
               <td className="px-4 py-2.5">3rd retry</td>
-              <td className="px-4 py-2.5 text-text-secondary">~2 minutes</td>
+              <td className="px-4 py-2.5 text-neutral-500 dark:text-neutral-400">~2 minutes</td>
             </tr>
             <tr>
               <td className="px-4 py-2.5">4th retry</td>
-              <td className="px-4 py-2.5 text-text-secondary">~4 minutes</td>
+              <td className="px-4 py-2.5 text-neutral-500 dark:text-neutral-400">~4 minutes</td>
             </tr>
             <tr>
               <td className="px-4 py-2.5">5th retry</td>
-              <td className="px-4 py-2.5 text-text-secondary">~8 minutes</td>
+              <td className="px-4 py-2.5 text-neutral-500 dark:text-neutral-400">~8 minutes</td>
             </tr>
           </tbody>
         </table>
-        <p className="text-sm text-text-secondary">
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">
           After 5 failed attempts the event is dropped. Paused subscriptions
           skip delivery entirely &mdash; events that occur while a subscription
           is paused are not queued for later delivery.
         </p>
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Idempotency</h3>
-        <p className="text-text-secondary">
+        <p className="text-neutral-500 dark:text-neutral-400">
           Your webhook handler should be idempotent. Use the combination of{" "}
-          <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">event_type</code> +{" "}
-          <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">timestamp</code> +
-          payload fields (e.g. <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">user_id</code>)
+          <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">event_type</code> +{" "}
+          <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">timestamp</code> +
+          payload fields (e.g. <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">user_id</code>)
           as a deduplication key if your handler has side effects.
         </p>
       </section>
@@ -581,10 +581,10 @@ for sub in subs.data:
         />
 
         <h3 className="text-lg font-semibold mt-6 mb-2">Update a subscription</h3>
-        <p className="mb-4 text-text-secondary">
+        <p className="mb-4 text-neutral-500 dark:text-neutral-400">
           Change the URL, event types, or status of an existing subscription.
           Set status to{" "}
-          <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">paused</code> to
+          <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">paused</code> to
           temporarily stop deliveries without deleting the subscription.
         </p>
         <CodeTabs
@@ -679,17 +679,17 @@ webhooks_api.update_api_v1_client_webhook(
       {/* Integration examples */}
       <section id="integration-examples" className="mb-12">
         <h2 className="text-2xl font-semibold mb-3">Integration examples</h2>
-        <p className="mb-6 text-text-secondary">
+        <p className="mb-6 text-neutral-500 dark:text-neutral-400">
           These examples show how to use webhooks for different application
           patterns. Each subscribes to different event types and handles the
           payload differently.
         </p>
 
         <div className="space-y-6">
-          <div className="rounded-xl border border-border p-4">
+          <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 p-4">
             <h3 className="font-semibold mb-1">Match notifications</h3>
-            <p className="text-sm text-text-secondary mb-2">
-              Subscribe to <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">match.computed</code>.
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
+              Subscribe to <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">match.computed</code>.
               When a match is found, notify both users via your application&apos;s
               notification system.
             </p>
@@ -706,10 +706,10 @@ if (event.event_type === "match.computed") {
             </pre>
           </div>
 
-          <div className="rounded-xl border border-border p-4">
+          <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 p-4">
             <h3 className="font-semibold mb-1">Segmentation pipeline</h3>
-            <p className="text-sm text-text-secondary mb-2">
-              Subscribe to <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">clustering.completed</code>.
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
+              Subscribe to <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">clustering.completed</code>.
               When clustering finishes, pull cluster assignments and update your
               application&apos;s user segments.
             </p>
@@ -725,10 +725,10 @@ if (event.event_type === "clustering.completed") {
             </pre>
           </div>
 
-          <div className="rounded-xl border border-border p-4">
+          <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 p-4">
             <h3 className="font-semibold mb-1">Campaign budget alerting</h3>
-            <p className="text-sm text-text-secondary mb-2">
-              Subscribe to <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">campaign.budget_exhausted</code>.
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
+              Subscribe to <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">campaign.budget_exhausted</code>.
               When a campaign runs out of budget, alert the marketing team and
               optionally create a follow-up campaign.
             </p>
@@ -746,10 +746,10 @@ if (event.event_type === "campaign.budget_exhausted") {
             </pre>
           </div>
 
-          <div className="rounded-xl border border-border p-4">
+          <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 p-4">
             <h3 className="font-semibold mb-1">Drift monitoring</h3>
-            <p className="text-sm text-text-secondary mb-2">
-              Subscribe to <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">cluster.drift_detected</code>.
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
+              Subscribe to <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">cluster.drift_detected</code>.
               When user segments shift, log the change for analysis and alert if
               a high-value segment is affected.
             </p>
@@ -770,21 +770,21 @@ if (event.event_type === "cluster.drift_detected") {
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-3">Next steps</h2>
-        <ul className="space-y-2 text-text-secondary">
+        <ul className="space-y-2 text-neutral-500 dark:text-neutral-400">
           <li>
-            <Link href="/docs/getting-started#webhooks" className="text-primary hover:underline">
+            <Link href="/docs/getting-started#webhooks" className="text-amber-600 dark:text-amber-400 hover:underline">
               Getting Started: Webhooks
             </Link>{" "}
             &mdash; Create your first webhook subscription.
           </li>
           <li>
-            <Link href="/docs/reference" className="text-primary hover:underline">
+            <Link href="/docs/reference" className="text-amber-600 dark:text-amber-400 hover:underline">
               API Reference
             </Link>{" "}
             &mdash; Full webhook endpoint schemas.
           </li>
           <li>
-            <Link href="/docs/recipes" className="text-primary hover:underline">
+            <Link href="/docs/recipes" className="text-amber-600 dark:text-amber-400 hover:underline">
               Use Case Recipes
             </Link>{" "}
             &mdash; See webhooks in context with complete integration patterns.

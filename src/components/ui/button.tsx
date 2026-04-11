@@ -5,19 +5,19 @@ import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
+  "inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         primary:
-          "bg-primary text-text-on-primary shadow-sm hover:bg-primary-hover hover:shadow-md active:bg-primary-active active:shadow-sm active:scale-[0.98]",
+          "bg-amber-500 text-neutral-950 shadow-sm hover:bg-amber-400 active:bg-amber-600 active:scale-[0.98] dark:bg-amber-500 dark:text-neutral-950 dark:hover:bg-amber-400",
         secondary:
-          "bg-surface-raised text-text border border-border shadow-sm hover:bg-surface-sunken hover:border-border-strong active:bg-surface-inset active:scale-[0.98]",
+          "bg-white text-neutral-900 border border-neutral-200 shadow-sm hover:bg-neutral-50 active:bg-neutral-100 active:scale-[0.98] dark:bg-neutral-800 dark:text-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-700",
         ghost:
-          "text-text-secondary hover:text-text hover:bg-surface-sunken active:bg-surface-inset",
+          "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:text-neutral-100 dark:hover:bg-neutral-800",
         danger:
-          "bg-error text-white shadow-sm hover:opacity-90 active:opacity-80 active:scale-[0.98]",
-        link: "text-primary underline-offset-4 hover:underline p-0 h-auto",
+          "bg-red-600 text-white shadow-sm hover:bg-red-500 active:bg-red-700 active:scale-[0.98]",
+        link: "text-amber-600 underline-offset-4 hover:underline p-0 h-auto dark:text-amber-400",
       },
       size: {
         sm: "h-8 px-3 text-xs",

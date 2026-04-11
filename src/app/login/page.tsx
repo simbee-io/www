@@ -13,7 +13,7 @@ export default function LoginPage() {
           <HexIcon className="h-6 w-6 text-white" />
         </div>
         <h1 className="text-3xl font-bold tracking-tight">Welcome back</h1>
-        <p className="mt-2 text-text-secondary">
+        <p className="mt-2 text-neutral-500 dark:text-neutral-400">
           Log in to your Simbee dashboard.
         </p>
       </div>
