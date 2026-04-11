@@ -7,62 +7,62 @@ export const metadata: Metadata = {
 
 export default function AuthenticationPage() {
   return (
-    <article>
+    <div>
       <h1 className="text-3xl font-bold mb-2">Authentication</h1>
-      <p className="text-lg mb-8">
+      <p className="text-lg text-text-secondary mb-8">
         Simbee uses JWT bearer tokens for API authentication. This guide walks
         through the complete flow: signing up, creating API keys, exchanging
         credentials for tokens, and making authenticated requests.
       </p>
 
-      <nav className="border rounded p-4 mb-10">
+      <nav className="rounded-lg border border-border bg-surface-raised p-4 mb-10">
         <p className="font-semibold text-sm mb-2">On this page</p>
-        <ol className="list-decimal list-inside text-sm space-y-1">
-          <li><a href="#overview" className="underline">Overview</a></li>
-          <li><a href="#signup" className="underline">Sign up</a></li>
-          <li><a href="#api-keys" className="underline">Create an API key</a></li>
-          <li><a href="#token-exchange" className="underline">Exchange credentials for a JWT</a></li>
-          <li><a href="#authenticated-requests" className="underline">Make authenticated requests</a></li>
-          <li><a href="#token-refresh" className="underline">Token refresh</a></li>
-          <li><a href="#jwks" className="underline">JWKS verification</a></li>
+        <ol className="list-decimal list-inside text-sm space-y-1 text-text-secondary">
+          <li><a href="#overview" className="hover:text-text transition-colors">Overview</a></li>
+          <li><a href="#signup" className="hover:text-text transition-colors">Sign up</a></li>
+          <li><a href="#api-keys" className="hover:text-text transition-colors">Create an API key</a></li>
+          <li><a href="#token-exchange" className="hover:text-text transition-colors">Exchange credentials for a JWT</a></li>
+          <li><a href="#authenticated-requests" className="hover:text-text transition-colors">Make authenticated requests</a></li>
+          <li><a href="#token-refresh" className="hover:text-text transition-colors">Token refresh</a></li>
+          <li><a href="#jwks" className="hover:text-text transition-colors">JWKS verification</a></li>
         </ol>
       </nav>
 
       {/* Overview */}
       <section id="overview" className="mb-10">
         <h2 className="text-2xl font-semibold mb-3">Overview</h2>
-        <p className="mb-4">The authentication flow has three steps:</p>
+        <p className="mb-4 text-text-secondary">The authentication flow has three steps:</p>
         <ol className="list-decimal pl-5 space-y-2 mb-4">
           <li>
             <strong>Sign up</strong> — Create a tenant via{" "}
-            <code className="text-sm">POST /auth/signup</code>. You receive a
+            <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">POST /auth/signup</code>. You receive a
             client, owner user, and an initial JWT.
           </li>
           <li>
             <strong>Create an API key</strong> — Use the initial token to create
             a named API key via{" "}
-            <code className="text-sm">
+            <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">
               POST /api/v1/clients/:client_id/api_keys
             </code>
             . The raw key is shown only once.
           </li>
           <li>
             <strong>Authenticate</strong> — Exchange credentials for a JWT via{" "}
-            <code className="text-sm">POST /auth/token</code>. Include the token
-            as <code className="text-sm">Authorization: Bearer &lt;token&gt;</code>{" "}
+            <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">POST /auth/token</code>. Include the token
+            as <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">Authorization: Bearer &lt;token&gt;</code>{" "}
             on all subsequent requests.
           </li>
         </ol>
-        <p className="text-sm">
+        <p className="text-sm text-text-secondary">
           Tokens are short-lived (15 minutes by default). When a token expires,
-          re-authenticate with <code className="text-sm">POST /auth/token</code>.
+          re-authenticate with <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">POST /auth/token</code>.
         </p>
       </section>
 
       {/* Sign up */}
       <section id="signup" className="mb-10">
         <h2 className="text-2xl font-semibold mb-3">1. Sign up</h2>
-        <p className="mb-4">
+        <p className="mb-4 text-text-secondary">
           Create a new tenant by providing an email, password, and company name.
           The response includes your client, an owner user, and a JWT you can
           use immediately.
@@ -143,7 +143,7 @@ with ApiClient(config) as client:
         />
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Response</h3>
-        <pre className="bg-gray-100 dark:bg-gray-900 rounded p-4 text-sm overflow-x-auto">
+        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 201 Created
 {
   "data": {
@@ -164,8 +164,8 @@ with ApiClient(config) as client:
   }
 }`}</code>
         </pre>
-        <p className="text-sm mt-2">
-          Save the <code className="text-sm">client.id</code> — you need it for
+        <p className="text-sm mt-2 text-text-secondary">
+          Save the <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">client.id</code> — you need it for
           all subsequent API calls. The initial token is valid for 15 minutes.
         </p>
       </section>
@@ -173,7 +173,7 @@ with ApiClient(config) as client:
       {/* Create API key */}
       <section id="api-keys" className="mb-10">
         <h2 className="text-2xl font-semibold mb-3">2. Create an API key</h2>
-        <p className="mb-4">
+        <p className="mb-4 text-text-secondary">
           API keys are used for programmatic access. Create one using the initial
           token from signup. The raw key is returned only once — store it
           securely.
@@ -247,7 +247,7 @@ with ApiClient(config) as client:
         />
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Response</h3>
-        <pre className="bg-gray-100 dark:bg-gray-900 rounded p-4 text-sm overflow-x-auto">
+        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 201 Created
 {
   "data": {
@@ -268,8 +268,8 @@ with ApiClient(config) as client:
         <h2 className="text-2xl font-semibold mb-3">
           3. Exchange credentials for a JWT
         </h2>
-        <p className="mb-4">
-          Use <code className="text-sm">/auth/token</code> to exchange
+        <p className="mb-4 text-text-secondary">
+          Use <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">/auth/token</code> to exchange
           credentials for a short-lived JWT. Tokens are valid for 15 minutes
           (900 seconds) by default.
         </p>
@@ -339,7 +339,7 @@ expires_in = result.data.expires_in  # 900`,
         />
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Response</h3>
-        <pre className="bg-gray-100 dark:bg-gray-900 rounded p-4 text-sm overflow-x-auto">
+        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 200 OK
 {
   "data": {
@@ -356,8 +356,8 @@ expires_in = result.data.expires_in  # 900`,
         <h2 className="text-2xl font-semibold mb-3">
           4. Make authenticated requests
         </h2>
-        <p className="mb-4">
-          Include the JWT in the <code className="text-sm">Authorization</code>{" "}
+        <p className="mb-4 text-text-secondary">
+          Include the JWT in the <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">Authorization</code>{" "}
           header as a Bearer token on every API request.
         </p>
 
@@ -445,27 +445,27 @@ with ApiClient(config) as client:
       {/* Token refresh */}
       <section id="token-refresh" className="mb-10">
         <h2 className="text-2xl font-semibold mb-3">5. Token refresh</h2>
-        <p className="mb-4">
-          Tokens expire after <code className="text-sm">expires_in</code>{" "}
+        <p className="mb-4 text-text-secondary">
+          Tokens expire after <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">expires_in</code>{" "}
           seconds (default: 900s). When expired, the API returns{" "}
-          <code className="text-sm">401 Unauthorized</code>. Call{" "}
-          <code className="text-sm">POST /auth/token</code> again with the same
+          <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">401 Unauthorized</code>. Call{" "}
+          <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">POST /auth/token</code> again with the same
           credentials to get a new token.
         </p>
 
         <p className="font-semibold mb-2">Recommended pattern:</p>
-        <ol className="list-decimal pl-5 space-y-1 mb-4 text-sm">
+        <ol className="list-decimal pl-5 space-y-1 mb-4 text-sm text-text-secondary">
           <li>
             Store the token and its expiry time (
-            <code className="text-sm">now + expires_in</code>).
+            <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">now + expires_in</code>).
           </li>
           <li>Before each request, check if the token is within 60s of expiry.</li>
           <li>
-            If near expiry, call <code className="text-sm">/auth/token</code> to
+            If near expiry, call <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">/auth/token</code> to
             refresh.
           </li>
           <li>
-            On <code className="text-sm">401</code> responses, re-authenticate
+            On <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">401</code> responses, re-authenticate
             and retry the request once.
           </li>
         </ol>
@@ -573,16 +573,16 @@ class SimbeeAuth:
         <h2 className="text-2xl font-semibold mb-3">
           6. JWKS verification (backend-to-backend)
         </h2>
-        <p className="mb-4">
+        <p className="mb-4 text-text-secondary">
           To verify Simbee JWTs independently without calling the API, fetch
           public keys from the JWKS endpoint:
         </p>
 
-        <pre className="bg-gray-100 dark:bg-gray-900 rounded p-4 text-sm overflow-x-auto mb-4">
+        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto mb-4">
           <code>GET https://api.simbee.io/.well-known/jwks.json</code>
         </pre>
 
-        <p className="mb-4">
+        <p className="mb-4 text-text-secondary">
           The response contains the public keys used to sign session tokens.
           Use any standard JWT library to verify tokens against these keys.
         </p>
@@ -656,13 +656,13 @@ print(decoded["aud"])  # Client ID`,
           ]}
         />
 
-        <p className="text-sm mt-4 p-3 border rounded bg-gray-50 dark:bg-gray-900">
+        <div className="text-sm mt-4 p-3 rounded-md border border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-amber-950/30 text-text-secondary">
           <strong>Cache the JWKS response.</strong> Public keys rotate
           infrequently. Cache for at least 5 minutes. If verification fails with
-          an unknown <code className="text-sm">kid</code>, refresh the cache and
+          an unknown <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">kid</code>, refresh the cache and
           retry once before rejecting.
-        </p>
+        </div>
       </section>
-    </article>
+    </div>
   );
 }

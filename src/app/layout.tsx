@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { AuthProvider } from "@/lib/auth";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,11 +17,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Simbee",
+    default: "Simbee — User Intelligence API",
     template: "%s | Simbee",
   },
   description:
-    "API platform for user intelligence, relationships, and recommendations.",
+    "API platform that turns user behavior into structured relationships, recommendations, and insights. Composable primitives for signals, affinities, scoring, clustering, campaigns, and feed.",
 };
 
 export default function RootLayout({
@@ -28,7 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+      <body className="min-h-screen flex flex-col">
+        <AuthProvider>
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
+        </AuthProvider>
+      </body>
     </html>
   );
 }
