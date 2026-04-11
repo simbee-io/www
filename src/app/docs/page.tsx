@@ -8,6 +8,8 @@ import {
   AlertTriangle,
   Rocket,
   Puzzle,
+  Bell,
+  BookOpen,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -35,6 +37,20 @@ const guides = [
     title: "Authentication",
     description:
       "Sign up, create API keys, exchange credentials for JWTs, and make authenticated requests.",
+  },
+  {
+    href: "/docs/webhooks",
+    icon: Bell,
+    title: "Webhooks",
+    description:
+      "Event catalog, payload schemas, signature verification, and delivery guarantees.",
+  },
+  {
+    href: "/docs/recipes",
+    icon: BookOpen,
+    title: "Use Case Recipes",
+    description:
+      "Content recommendation, community matching, marketplace discovery, and more.",
   },
   {
     href: "/docs/reference",

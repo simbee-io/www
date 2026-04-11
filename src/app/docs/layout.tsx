@@ -13,6 +13,8 @@ const docsNav = [
   { href: "/docs/getting-started", label: "Getting Started" },
   { href: "/docs/concepts", label: "Concepts" },
   { href: "/docs/authentication", label: "Authentication" },
+  { href: "/docs/webhooks", label: "Webhooks" },
+  { href: "/docs/recipes", label: "Use Case Recipes" },
   { href: "/docs/reference", label: "API Reference" },
   { href: "/docs/errors", label: "Errors" },
 ] as const;
