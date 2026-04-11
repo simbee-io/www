@@ -44,7 +44,7 @@ export function SignupForm() {
 
       // Create the first API key automatically
       const keyRes = await apiFetch<{
-        data: { key: string };
+        raw_key: string;
       }>(`/api/v1/clients/${data.client.id}/api_keys`, {
         method: "POST",
         token: data.token,
@@ -54,7 +54,7 @@ export function SignupForm() {
       setResult({
         clientId: data.client.id,
         clientSlug: data.client.slug,
-        apiKey: keyRes.data.key,
+        apiKey: keyRes.raw_key,
       });
       setStep("success");
     } catch (err) {

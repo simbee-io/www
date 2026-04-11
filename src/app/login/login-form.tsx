@@ -12,8 +12,7 @@ export function LoginForm() {
   const router = useRouter();
   const { login } = useAuth();
 
-  const [clientId, setClientId] = useState("");
-  const [userId, setUserId] = useState("owner");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -24,13 +23,13 @@ export function LoginForm() {
     setSubmitting(true);
 
     try {
-      await login(clientId, userId, password);
+      await login(email, password);
       router.push("/dashboard");
     } catch (err) {
       if (err instanceof ApiError) {
         setError(
-          err.status === 401
-            ? "Invalid credentials. Check your client ID, user ID, and password."
+          err.status === 401 || err.status === 404
+            ? "Invalid email or password."
             : err.message
         );
       } else {
@@ -45,30 +44,16 @@ export function LoginForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 space-y-4 shadow-sm">
         <div className="space-y-2">
-          <Label htmlFor="client-id">Client ID</Label>
+          <Label htmlFor="email">Email</Label>
           <Input
-            id="client-id"
-            type="text"
-            placeholder="cl_..."
-            value={clientId}
-            onChange={(e) => setClientId(e.target.value)}
+            id="email"
+            type="email"
+            placeholder="you@company.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             autoFocus
           />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="user-id">User ID</Label>
-          <Input
-            id="user-id"
-            type="text"
-            placeholder="owner"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
-            required
-          />
-          <p className="text-xs text-neutral-400 dark:text-neutral-500">
-            Use &quot;owner&quot; for the account owner, or a user&apos;s external ID.
-          </p>
         </div>
         <div className="space-y-2">
           <Label htmlFor="password">Password</Label>

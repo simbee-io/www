@@ -32,16 +32,31 @@ interface Session {
   client: AuthClient;
 }
 
+interface TokenResponse {
+  token: string;
+  scopes: string[];
+  expires_in: number;
+  user: AuthUser;
+  client: AuthClient;
+}
+
+interface SignupResponse {
+  client: AuthClient;
+  user: AuthUser;
+  token: string;
+  scopes: string[];
+}
+
 interface AuthContextValue {
   session: Session | null;
   loading: boolean;
-  login: (clientId: string, userId: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
   signup: (
     email: string,
     password: string,
     companyName: string,
     tier?: string
-  ) => Promise<{ client: AuthClient; user: AuthUser; token: string }>;
+  ) => Promise<SignupResponse>;
   logout: () => void;
   getToken: () => string | null;
 }
@@ -104,29 +119,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const session = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const login = useCallback(
-    async (clientId: string, userId: string, password: string) => {
-      const res = await apiFetch<{
-        data: {
-          token: string;
-          scopes: string[];
-          expires_in: number;
-          user: AuthUser;
-          client: AuthClient;
-        };
-      }>("/auth/token", {
+    async (email: string, password: string) => {
+      const res = await apiFetch<TokenResponse>("/auth/token", {
         method: "POST",
-        body: JSON.stringify({
-          client_id: clientId,
-          user_id: userId,
-          password,
-        }),
+        body: JSON.stringify({ email, password }),
       });
       const s: Session = {
-        token: res.data.token,
-        expiresAt: Date.now() + res.data.expires_in * 1000,
-        scopes: res.data.scopes,
-        user: res.data.user,
-        client: res.data.client,
+        token: res.token,
+        expiresAt: Date.now() + res.expires_in * 1000,
+        scopes: res.scopes,
+        user: res.user,
+        client: res.client,
       };
       saveSession(s);
     },
@@ -140,14 +143,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       companyName: string,
       tier = "graph"
     ) => {
-      const res = await apiFetch<{
-        data: {
-          client: AuthClient;
-          user: AuthUser;
-          token: string;
-          scopes: string[];
-        };
-      }>("/auth/signup", {
+      const res = await apiFetch<SignupResponse>("/auth/signup", {
         method: "POST",
         body: JSON.stringify({
           email,
@@ -157,14 +153,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }),
       });
       const s: Session = {
-        token: res.data.token,
+        token: res.token,
         expiresAt: Date.now() + 900 * 1000,
-        scopes: res.data.scopes,
-        user: res.data.user,
-        client: res.data.client,
+        scopes: res.scopes,
+        user: res.user,
+        client: res.client,
       };
       saveSession(s);
-      return res.data;
+      return res;
     },
     []
   );
