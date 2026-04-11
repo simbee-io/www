@@ -24,14 +24,14 @@ export default function ErrorsPage() {
         </p>
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Standard error</h3>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto mb-4">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto mb-4">
           <code>{`{
   "message": "Not found"
 }`}</code>
         </pre>
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Validation error</h3>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto mb-4">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto mb-4">
           <code>{`{
   "message": "Validation failed",
   "errors": [
@@ -47,7 +47,7 @@ export default function ErrorsPage() {
         <p className="text-sm text-text-secondary mb-2">
           Analytics endpoints (Python/FastAPI) use the OpenAPI validation format:
         </p>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`{
   "detail": [
     {
@@ -65,7 +65,7 @@ export default function ErrorsPage() {
         <h2 className="text-2xl font-semibold mb-3">HTTP status codes</h2>
 
         <h3 className="text-lg font-semibold mt-6 mb-2">Success codes</h3>
-        <div className="overflow-x-auto rounded-lg border border-border">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-surface-sunken">
@@ -95,7 +95,7 @@ export default function ErrorsPage() {
         </div>
 
         <h3 className="text-lg font-semibold mt-6 mb-2">Client error codes</h3>
-        <div className="overflow-x-auto rounded-lg border border-border">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-surface-sunken">
@@ -125,7 +125,7 @@ export default function ErrorsPage() {
         </div>
 
         <h3 className="text-lg font-semibold mt-6 mb-2">Server error codes</h3>
-        <div className="overflow-x-auto rounded-lg border border-border">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-surface-sunken">
@@ -159,7 +159,7 @@ export default function ErrorsPage() {
           limited, you receive a <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">429</code> response
           with headers indicating the limit:
         </p>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto mb-4">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto mb-4">
           <code>{`HTTP/1.1 429 Too Many Requests
 X-RateLimit-Limit: 100
 X-RateLimit-Remaining: 0
@@ -174,7 +174,7 @@ X-RateLimit-Reset: 1718100000`}</code>
       {/* Retry guidance */}
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-3">Retry guidance</h2>
-        <div className="overflow-x-auto rounded-lg border border-border">
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-surface-sunken">

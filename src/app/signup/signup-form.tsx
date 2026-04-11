@@ -11,8 +11,6 @@ import {
   Check,
   Copy,
   ArrowRight,
-  Hexagon,
-  Loader2,
 } from "lucide-react";
 
 type Step = "form" | "success";
@@ -80,7 +78,7 @@ export function SignupForm() {
   if (step === "success" && result) {
     return (
       <div className="space-y-6">
-        <div className="rounded-lg border border-border bg-surface-raised p-6 text-center">
+        <div className="rounded-xl border border-border bg-surface-raised p-6 shadow-sm text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
             <Check className="h-6 w-6 text-green-700 dark:text-green-400" />
           </div>
@@ -90,13 +88,13 @@ export function SignupForm() {
           </p>
         </div>
 
-        <div className="rounded-lg border border-border bg-surface-raised p-6">
+        <div className="rounded-xl border border-border bg-surface-raised p-6 shadow-sm">
           <h3 className="font-semibold mb-1">Your API key</h3>
           <p className="text-xs text-text-secondary mb-3">
             This is shown only once. Store it securely.
           </p>
           <div className="flex items-center gap-2">
-            <code className="flex-1 rounded bg-neutral-900 text-amber-300 px-3 py-2 text-sm font-mono overflow-x-auto">
+            <code className="flex-1 rounded-lg bg-neutral-950 border border-neutral-800 text-amber-300 px-3 py-2 text-sm font-mono overflow-x-auto">
               {result.apiKey}
             </code>
             <Button variant="secondary" size="icon" onClick={copyKey}>
@@ -109,7 +107,7 @@ export function SignupForm() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-border bg-surface-raised p-6">
+        <div className="rounded-xl border border-border bg-surface-raised p-6 shadow-sm">
           <h3 className="font-semibold mb-3">Quick start</h3>
           <div className="space-y-3">
             <QuickstartStep
@@ -155,7 +153,7 @@ export function SignupForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="rounded-lg border border-border bg-surface-raised p-6 space-y-4">
+      <div className="rounded-xl border border-border bg-surface-raised p-6 shadow-sm space-y-4">
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
           <Input
@@ -211,23 +209,13 @@ export function SignupForm() {
       </div>
 
       {error && (
-        <div className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
           {error}
         </div>
       )}
 
-      <Button type="submit" className="w-full" size="lg" disabled={submitting}>
-        {submitting ? (
-          <>
-            <Loader2 className="h-4 w-4 animate-spin" />
-            Creating account...
-          </>
-        ) : (
-          <>
-            <Hexagon className="h-4 w-4" />
-            Create account
-          </>
-        )}
+      <Button type="submit" className="w-full" size="lg" loading={submitting}>
+        {submitting ? "Creating account..." : "Create account"}
       </Button>
 
       <p className="text-center text-sm text-text-secondary">
@@ -255,10 +243,10 @@ function TierOption({
     <button
       type="button"
       onClick={onSelect}
-      className={`rounded-md border p-3 text-left transition-colors cursor-pointer ${
+      className={`rounded-xl border p-3 text-left transition-all cursor-pointer ${
         selected
-          ? "border-primary bg-amber-50 dark:bg-amber-950/30"
-          : "border-border hover:border-border-strong"
+          ? "border-primary bg-amber-50 shadow-sm dark:bg-amber-950/30"
+          : "border-border hover:border-border-strong hover:shadow-sm"
       }`}
     >
       <div className="text-sm font-medium">{name}</div>
@@ -279,12 +267,12 @@ function QuickstartStep({
   return (
     <div>
       <div className="flex items-center gap-2 mb-1.5">
-        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-text-on-primary">
+        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-[10px] font-bold text-white shadow-sm">
           {number}
         </span>
         <span className="text-sm font-medium">{title}</span>
       </div>
-      <pre className="rounded bg-neutral-900 text-neutral-300 px-3 py-2 text-xs overflow-x-auto">
+      <pre className="rounded-lg bg-neutral-950 text-neutral-300 px-3 py-2 text-xs overflow-x-auto border border-neutral-800">
         <code>{code}</code>
       </pre>
     </div>

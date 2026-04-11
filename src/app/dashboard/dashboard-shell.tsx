@@ -49,7 +49,7 @@ function Sidebar() {
         <p className="text-sm font-medium truncate">
           {session?.client.name}
         </p>
-        <p className="text-xs text-text-tertiary truncate">
+        <p className="text-xs text-text-tertiary truncate mt-0.5">
           {session?.client.id}
         </p>
       </div>
@@ -64,9 +64,9 @@ function Sidebar() {
               key={href}
               href={href}
               className={cn(
-                "flex items-center gap-2.5 rounded-md px-3 py-2 text-sm transition-colors",
+                "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-all",
                 active
-                  ? "bg-amber-100/60 text-amber-900 dark:bg-amber-900/30 dark:text-amber-300"
+                  ? "bg-amber-100/70 text-amber-900 font-medium dark:bg-amber-900/30 dark:text-amber-300"
                   : "text-text-secondary hover:text-text hover:bg-surface-raised"
               )}
             >
@@ -79,7 +79,7 @@ function Sidebar() {
       <div className="px-2 py-3 border-t border-border">
         <button
           onClick={logout}
-          className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-sm text-text-secondary hover:text-text hover:bg-surface-raised transition-colors cursor-pointer"
+          className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-text-secondary hover:text-text hover:bg-surface-raised transition-all cursor-pointer"
         >
           <LogOut className="h-4 w-4 shrink-0" />
           Log out

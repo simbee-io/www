@@ -36,7 +36,7 @@ export default function DocsLayout({
             <Link
               key={href}
               href={href}
-              className="block px-3 py-1.5 text-sm rounded-md text-text-secondary hover:text-text hover:bg-surface-raised transition-colors"
+              className="block px-3 py-1.5 text-sm rounded-lg text-text-secondary hover:text-text hover:bg-surface-raised transition-all"
             >
               {label}
             </Link>
@@ -45,17 +45,17 @@ export default function DocsLayout({
             <p className="px-3 text-xs font-semibold text-text-tertiary uppercase tracking-wider mb-3">
               SDKs
             </p>
-            <div className="px-3 space-y-1 text-sm text-text-secondary">
+            <div className="px-3 space-y-1.5 text-sm text-text-secondary">
               <p>
-                <code className="text-xs">@simbee-io/client</code>{" "}
+                <code className="text-xs font-mono bg-surface-inset px-1.5 py-0.5 rounded">@simbee-io/client</code>{" "}
                 <span className="text-text-tertiary text-xs">npm</span>
               </p>
               <p>
-                <code className="text-xs">simbee-client</code>{" "}
+                <code className="text-xs font-mono bg-surface-inset px-1.5 py-0.5 rounded">simbee-client</code>{" "}
                 <span className="text-text-tertiary text-xs">gem</span>
               </p>
               <p>
-                <code className="text-xs">simbee-client</code>{" "}
+                <code className="text-xs font-mono bg-surface-inset px-1.5 py-0.5 rounded">simbee-client</code>{" "}
                 <span className="text-text-tertiary text-xs">pip</span>
               </p>
             </div>

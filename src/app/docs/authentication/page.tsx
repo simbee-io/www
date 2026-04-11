@@ -15,7 +15,7 @@ export default function AuthenticationPage() {
         credentials for tokens, and making authenticated requests.
       </p>
 
-      <nav className="rounded-lg border border-border bg-surface-raised p-4 mb-10">
+      <nav className="rounded-xl border border-border bg-surface-raised p-4 mb-10">
         <p className="font-semibold text-sm mb-2">On this page</p>
         <ol className="list-decimal list-inside text-sm space-y-1 text-text-secondary">
           <li><a href="#overview" className="hover:text-text transition-colors">Overview</a></li>
@@ -143,7 +143,7 @@ with ApiClient(config) as client:
         />
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Response</h3>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 201 Created
 {
   "data": {
@@ -247,7 +247,7 @@ with ApiClient(config) as client:
         />
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Response</h3>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 201 Created
 {
   "data": {
@@ -339,7 +339,7 @@ expires_in = result.data.expires_in  # 900`,
         />
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Response</h3>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 200 OK
 {
   "data": {
@@ -578,7 +578,7 @@ class SimbeeAuth:
           public keys from the JWKS endpoint:
         </p>
 
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto mb-4">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto mb-4">
           <code>GET https://api.simbee.io/.well-known/jwks.json</code>
         </pre>
 

@@ -16,7 +16,7 @@ export default function ConceptsPage() {
         combine.
       </p>
 
-      <nav className="rounded-lg border border-border bg-surface-raised p-4 mb-10">
+      <nav className="rounded-xl border border-border bg-surface-raised p-4 mb-10">
         <p className="font-semibold text-sm mb-2">On this page</p>
         <ol className="list-decimal list-inside text-sm space-y-1 text-text-secondary">
           <li><a href="#vocabulary" className="hover:text-text transition-colors">Vocabulary</a></li>
@@ -435,7 +435,7 @@ export default function ConceptsPage() {
         </p>
 
         <div className="space-y-6">
-          <div className="rounded-lg border border-border p-4">
+          <div className="rounded-xl border border-border p-4">
             <h3 className="font-semibold mb-1">Recommendation engine</h3>
             <p className="text-sm text-text-secondary mb-2">
               Vocabulary + Signals + Affinities + Feed
@@ -448,7 +448,7 @@ export default function ConceptsPage() {
             </p>
           </div>
 
-          <div className="rounded-lg border border-border p-4">
+          <div className="rounded-xl border border-border p-4">
             <h3 className="font-semibold mb-1">Community matching</h3>
             <p className="text-sm text-text-secondary mb-2">
               Vocabulary + Signals + Affinities + Consent Layers + Scoring + Matches
@@ -461,7 +461,7 @@ export default function ConceptsPage() {
             </p>
           </div>
 
-          <div className="rounded-lg border border-border p-4">
+          <div className="rounded-xl border border-border p-4">
             <h3 className="font-semibold mb-1">Marketplace discovery</h3>
             <p className="text-sm text-text-secondary mb-2">
               Scoring + Campaigns + Clustering + Feed + Analytics
@@ -474,7 +474,7 @@ export default function ConceptsPage() {
             </p>
           </div>
 
-          <div className="rounded-lg border border-border p-4">
+          <div className="rounded-xl border border-border p-4">
             <h3 className="font-semibold mb-1">User segmentation</h3>
             <p className="text-sm text-text-secondary mb-2">
               Vocabulary + Clustering + Analytics
@@ -486,7 +486,7 @@ export default function ConceptsPage() {
             </p>
           </div>
 
-          <div className="rounded-lg border border-border p-4">
+          <div className="rounded-xl border border-border p-4">
             <h3 className="font-semibold mb-1">Content distribution</h3>
             <p className="text-sm text-text-secondary mb-2">
               Campaigns + Feed + Signals + Analytics
@@ -498,7 +498,7 @@ export default function ConceptsPage() {
             </p>
           </div>
 
-          <div className="rounded-lg border border-border p-4">
+          <div className="rounded-xl border border-border p-4">
             <h3 className="font-semibold mb-1">Engagement analytics</h3>
             <p className="text-sm text-text-secondary mb-2">
               Signals + Analytics + Webhooks

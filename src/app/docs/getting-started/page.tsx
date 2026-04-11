@@ -22,7 +22,7 @@ export default function GettingStartedPage() {
         for how each primitive maps to different applications.
       </p>
 
-      <nav className="rounded-lg border border-border bg-surface-raised p-4 mb-10">
+      <nav className="rounded-xl border border-border bg-surface-raised p-4 mb-10">
         <p className="font-semibold text-sm mb-2">On this page</p>
         <ol className="list-decimal list-inside text-sm space-y-1 text-text-secondary">
           <li><a href="#setup" className="hover:text-text transition-colors">Setup</a></li>
@@ -220,7 +220,7 @@ config_api.create_api_v1_config_signal_type(
         />
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Response</h3>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 201 Created
 {
   "data": {
@@ -356,7 +356,7 @@ users_api.create_api_v1_user(
         />
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Response</h3>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 201 Created
 {
   "data": {
@@ -524,7 +524,7 @@ signals_api.create_api_v1_user_signal(
         />
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Response</h3>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 201 Created
 {
   "data": {
@@ -957,7 +957,7 @@ print(result.data.id)  # Subscription ID`,
         />
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Response</h3>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 201 Created
 {
   "data": {
@@ -1029,7 +1029,7 @@ print(f"Signals (24h): {overview.data.last_24h.signals_created}")`,
         />
 
         <h3 className="text-lg font-semibold mt-4 mb-2">Response</h3>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 200 OK
 {
   "data": {

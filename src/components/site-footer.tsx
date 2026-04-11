@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Hexagon } from "lucide-react";
 
 const footerSections = [
   {
@@ -33,18 +32,22 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-12">
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
           <div className="col-span-2 sm:col-span-1">
-            <Link href="/" className="flex items-center gap-2 font-semibold">
-              <Hexagon className="h-5 w-5 text-primary" strokeWidth={2.5} />
+            <Link href="/" className="flex items-center gap-2.5 font-semibold group">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 shadow-sm">
+                <HexIcon className="h-4 w-4 text-white" />
+              </span>
               <span>Simbee</span>
             </Link>
-            <p className="mt-3 text-sm text-text-secondary max-w-xs">
+            <p className="mt-3 text-sm text-text-secondary max-w-xs leading-relaxed">
               API platform for user intelligence, relationships, and
               recommendations.
             </p>
           </div>
           {footerSections.map((section) => (
             <div key={section.title}>
-              <h4 className="text-sm font-semibold mb-3">{section.title}</h4>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-text-tertiary mb-3">
+                {section.title}
+              </h4>
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.href}>
@@ -65,5 +68,21 @@ export function SiteFooter() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function HexIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M12 2l8.5 5v10L12 22l-8.5-5V7z" />
+    </svg>
   );
 }

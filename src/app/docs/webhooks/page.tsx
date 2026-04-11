@@ -16,7 +16,7 @@ export default function WebhooksPage() {
         respond to matches, clustering, and campaign changes in real time.
       </p>
 
-      <nav className="rounded-lg border border-border bg-surface-raised p-4 mb-10">
+      <nav className="rounded-xl border border-border bg-surface-raised p-4 mb-10">
         <p className="font-semibold text-sm mb-2">On this page</p>
         <ol className="list-decimal list-inside text-sm space-y-1 text-text-secondary">
           <li><a href="#subscribing" className="hover:text-text transition-colors">Subscribing</a></li>
@@ -116,7 +116,7 @@ print(result.data.id)  # wh_abc123`,
         </p>
 
         {/* match.computed */}
-        <div className="rounded-lg border border-border mb-4 overflow-hidden">
+        <div className="rounded-xl border border-border mb-4 overflow-hidden">
           <div className="px-4 py-3 bg-surface-sunken border-b border-border">
             <code className="text-sm font-semibold">match.computed</code>
           </div>
@@ -161,7 +161,7 @@ print(result.data.id)  # wh_abc123`,
         </div>
 
         {/* clustering.completed */}
-        <div className="rounded-lg border border-border mb-4 overflow-hidden">
+        <div className="rounded-xl border border-border mb-4 overflow-hidden">
           <div className="px-4 py-3 bg-surface-sunken border-b border-border">
             <code className="text-sm font-semibold">clustering.completed</code>
           </div>
@@ -206,7 +206,7 @@ print(result.data.id)  # wh_abc123`,
         </div>
 
         {/* clustering.failed */}
-        <div className="rounded-lg border border-border mb-4 overflow-hidden">
+        <div className="rounded-xl border border-border mb-4 overflow-hidden">
           <div className="px-4 py-3 bg-surface-sunken border-b border-border">
             <code className="text-sm font-semibold">clustering.failed</code>
           </div>
@@ -245,7 +245,7 @@ print(result.data.id)  # wh_abc123`,
         </div>
 
         {/* campaign.budget_exhausted */}
-        <div className="rounded-lg border border-border mb-4 overflow-hidden">
+        <div className="rounded-xl border border-border mb-4 overflow-hidden">
           <div className="px-4 py-3 bg-surface-sunken border-b border-border">
             <code className="text-sm font-semibold">campaign.budget_exhausted</code>
           </div>
@@ -280,7 +280,7 @@ print(result.data.id)  # wh_abc123`,
         </div>
 
         {/* cluster.drift_detected */}
-        <div className="rounded-lg border border-border mb-4 overflow-hidden">
+        <div className="rounded-xl border border-border mb-4 overflow-hidden">
           <div className="px-4 py-3 bg-surface-sunken border-b border-border">
             <code className="text-sm font-semibold">cluster.drift_detected</code>
           </div>
@@ -323,7 +323,7 @@ print(result.data.id)  # wh_abc123`,
           event type, payload data, and a timestamp.
         </p>
 
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-sm overflow-x-auto mb-4">
+        <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto mb-4">
           <code>{`POST https://your-app.com/webhooks/simbee
 Content-Type: application/json
 X-Simbee-Event: match.computed
@@ -686,14 +686,14 @@ webhooks_api.update_api_v1_client_webhook(
         </p>
 
         <div className="space-y-6">
-          <div className="rounded-lg border border-border p-4">
+          <div className="rounded-xl border border-border p-4">
             <h3 className="font-semibold mb-1">Match notifications</h3>
             <p className="text-sm text-text-secondary mb-2">
               Subscribe to <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">match.computed</code>.
               When a match is found, notify both users via your application&apos;s
               notification system.
             </p>
-            <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-xs overflow-x-auto">
+            <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-xs overflow-x-auto">
               <code>{`// Handle match.computed
 if (event.event_type === "match.computed") {
   const { user_id, matched_user_id, score } = event.data;
@@ -706,14 +706,14 @@ if (event.event_type === "match.computed") {
             </pre>
           </div>
 
-          <div className="rounded-lg border border-border p-4">
+          <div className="rounded-xl border border-border p-4">
             <h3 className="font-semibold mb-1">Segmentation pipeline</h3>
             <p className="text-sm text-text-secondary mb-2">
               Subscribe to <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">clustering.completed</code>.
               When clustering finishes, pull cluster assignments and update your
               application&apos;s user segments.
             </p>
-            <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-xs overflow-x-auto">
+            <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-xs overflow-x-auto">
               <code>{`// Handle clustering.completed
 if (event.event_type === "clustering.completed") {
   const { clustering_run_id, clusters } = event.data;
@@ -725,14 +725,14 @@ if (event.event_type === "clustering.completed") {
             </pre>
           </div>
 
-          <div className="rounded-lg border border-border p-4">
+          <div className="rounded-xl border border-border p-4">
             <h3 className="font-semibold mb-1">Campaign budget alerting</h3>
             <p className="text-sm text-text-secondary mb-2">
               Subscribe to <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">campaign.budget_exhausted</code>.
               When a campaign runs out of budget, alert the marketing team and
               optionally create a follow-up campaign.
             </p>
-            <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-xs overflow-x-auto">
+            <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-xs overflow-x-auto">
               <code>{`// Handle campaign.budget_exhausted
 if (event.event_type === "campaign.budget_exhausted") {
   const { campaign_id } = event.data;
@@ -746,14 +746,14 @@ if (event.event_type === "campaign.budget_exhausted") {
             </pre>
           </div>
 
-          <div className="rounded-lg border border-border p-4">
+          <div className="rounded-xl border border-border p-4">
             <h3 className="font-semibold mb-1">Drift monitoring</h3>
             <p className="text-sm text-text-secondary mb-2">
               Subscribe to <code className="text-xs bg-surface-sunken px-1.5 py-0.5 rounded">cluster.drift_detected</code>.
               When user segments shift, log the change for analysis and alert if
               a high-value segment is affected.
             </p>
-            <pre className="rounded-md bg-neutral-900 text-neutral-300 p-4 text-xs overflow-x-auto">
+            <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-xs overflow-x-auto">
               <code>{`// Handle cluster.drift_detected
 if (event.event_type === "cluster.drift_detected") {
   const { cluster_id } = event.data;

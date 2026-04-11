@@ -10,9 +10,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <input
         className={cn(
-          "flex h-10 w-full rounded-md border bg-surface-raised px-3 py-2 text-sm transition-colors",
+          "flex h-10 w-full rounded-lg border bg-surface-raised px-3 py-2 text-sm shadow-sm transition-all",
           "placeholder:text-text-tertiary",
-          "focus:outline-2 focus:outline-offset-1 focus:outline-primary",
+          "focus:outline-2 focus:outline-offset-1 focus:outline-primary focus:shadow-md",
           "disabled:cursor-not-allowed disabled:opacity-50",
           error
             ? "border-error focus:outline-error"

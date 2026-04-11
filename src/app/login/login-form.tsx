@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth, ApiError } from "@/lib/auth";
-import { Hexagon, Loader2 } from "lucide-react";
 
 export function LoginForm() {
   const router = useRouter();
@@ -44,7 +43,7 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="rounded-lg border border-border bg-surface-raised p-6 space-y-4">
+      <div className="rounded-xl border border-border bg-surface-raised p-6 space-y-4 shadow-sm">
         <div className="space-y-2">
           <Label htmlFor="client-id">Client ID</Label>
           <Input
@@ -84,23 +83,13 @@ export function LoginForm() {
       </div>
 
       {error && (
-        <div className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
           {error}
         </div>
       )}
 
-      <Button type="submit" className="w-full" size="lg" disabled={submitting}>
-        {submitting ? (
-          <>
-            <Loader2 className="h-4 w-4 animate-spin" />
-            Logging in...
-          </>
-        ) : (
-          <>
-            <Hexagon className="h-4 w-4" />
-            Log in
-          </>
-        )}
+      <Button type="submit" className="w-full" size="lg" loading={submitting}>
+        {submitting ? "Logging in..." : "Log in"}
       </Button>
 
       <p className="text-center text-sm text-text-secondary">

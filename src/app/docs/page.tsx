@@ -23,6 +23,8 @@ const guides = [
     title: "Getting Started",
     description:
       "Step-by-step tutorial covering users, signals, affinities, feed, clusters, campaigns, and analytics.",
+    color: "text-amber-600 dark:text-amber-400",
+    bg: "bg-amber-50 dark:bg-amber-900/20",
   },
   {
     href: "/docs/concepts",
@@ -30,6 +32,8 @@ const guides = [
     title: "Concepts",
     description:
       "How each primitive works independently and how they compose into different application patterns.",
+    color: "text-violet-600 dark:text-violet-400",
+    bg: "bg-violet-50 dark:bg-violet-900/20",
   },
   {
     href: "/docs/authentication",
@@ -37,6 +41,8 @@ const guides = [
     title: "Authentication",
     description:
       "Sign up, create API keys, exchange credentials for JWTs, and make authenticated requests.",
+    color: "text-teal-600 dark:text-teal-400",
+    bg: "bg-teal-50 dark:bg-teal-900/20",
   },
   {
     href: "/docs/webhooks",
@@ -44,6 +50,8 @@ const guides = [
     title: "Webhooks",
     description:
       "Event catalog, payload schemas, signature verification, and delivery guarantees.",
+    color: "text-sky-600 dark:text-sky-400",
+    bg: "bg-sky-50 dark:bg-sky-900/20",
   },
   {
     href: "/docs/recipes",
@@ -51,6 +59,8 @@ const guides = [
     title: "Use Case Recipes",
     description:
       "Content recommendation, community matching, marketplace discovery, and more.",
+    color: "text-emerald-600 dark:text-emerald-400",
+    bg: "bg-emerald-50 dark:bg-emerald-900/20",
   },
   {
     href: "/docs/reference",
@@ -58,6 +68,8 @@ const guides = [
     title: "API Reference",
     description:
       "Interactive reference for all endpoints, generated from the OpenAPI spec.",
+    color: "text-orange-600 dark:text-orange-400",
+    bg: "bg-orange-50 dark:bg-orange-900/20",
   },
   {
     href: "/docs/errors",
@@ -65,6 +77,8 @@ const guides = [
     title: "Error Codes",
     description:
       "Standard error response format, HTTP status codes, and retry guidance.",
+    color: "text-rose-600 dark:text-rose-400",
+    bg: "bg-rose-50 dark:bg-rose-900/20",
   },
 ] as const;
 
@@ -72,7 +86,7 @@ export default function DocsHome() {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-3">Simbee Documentation</h1>
-      <p className="text-lg text-text-secondary mb-10 max-w-2xl">
+      <p className="text-lg text-text-secondary mb-10 max-w-2xl leading-relaxed">
         Simbee is an API platform that turns user behavior into structured
         relationships, recommendations, and insights. It provides composable
         primitives — signals, affinities, vocabulary, scoring, clustering,
@@ -84,18 +98,18 @@ export default function DocsHome() {
       <div className="grid gap-3 sm:grid-cols-2 mb-10">
         {guides.map((g) => (
           <Link key={g.href} href={g.href} className="group">
-            <Card className="h-full transition-colors group-hover:border-primary/40">
+            <Card className="h-full transition-all group-hover:border-border-strong group-hover:shadow-lg">
               <CardContent className="py-4">
                 <div className="flex items-start gap-3">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-400">
+                  <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${g.bg} ${g.color}`}>
                     <g.icon className="h-4 w-4" />
                   </div>
                   <div className="min-w-0">
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5">
                       <h3 className="font-semibold text-sm">{g.title}</h3>
-                      <ArrowRight className="h-3 w-3 text-text-tertiary group-hover:text-primary transition-colors" />
+                      <ArrowRight className="h-3 w-3 text-text-tertiary group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
                     </div>
-                    <p className="text-sm text-text-secondary mt-0.5">
+                    <p className="text-sm text-text-secondary mt-0.5 leading-relaxed">
                       {g.description}
                     </p>
                   </div>
@@ -153,10 +167,10 @@ function SdkCard({
   registry: string;
 }) {
   return (
-    <div className="rounded-md border border-border px-4 py-3">
+    <div className="rounded-xl border border-border bg-surface-raised px-4 py-3 shadow-sm hover:shadow-md transition-shadow">
       <p className="text-sm font-medium">{lang}</p>
       <p className="text-xs text-text-secondary mt-0.5">
-        <code>{pkg}</code>{" "}
+        <code className="font-mono bg-surface-sunken px-1.5 py-0.5 rounded text-xs">{pkg}</code>{" "}
         <span className="text-text-tertiary">({registry})</span>
       </p>
     </div>
@@ -174,12 +188,12 @@ function QuickstartStep({
 }) {
   return (
     <li className="flex gap-3">
-      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-text-on-primary mt-0.5">
+      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-xs font-bold text-white mt-0.5 shadow-sm">
         {number}
       </span>
       <div className="min-w-0 flex-1">
         <p className="font-semibold mb-1.5">{title}</p>
-        <pre className="rounded-md bg-neutral-900 text-neutral-300 px-4 py-3 text-xs overflow-x-auto">
+        <pre className="rounded-xl bg-neutral-950 text-neutral-300 px-4 py-3 text-xs overflow-x-auto leading-relaxed border border-neutral-800">
           <code>{code}</code>
         </pre>
       </div>

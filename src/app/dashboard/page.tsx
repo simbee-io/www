@@ -34,7 +34,7 @@ export default function DashboardOverview() {
           <div className="flex items-center justify-between">
             <div>
               <p className="font-semibold">{session?.client.name}</p>
-              <p className="text-sm text-text-secondary">
+              <p className="text-sm text-text-secondary mt-0.5">
                 {session?.client.id} &middot; {session?.client.slug}
               </p>
             </div>
@@ -58,10 +58,30 @@ export default function DashboardOverview() {
               ? undefined
               : users?.meta?.total_count?.toString() ?? users?.data?.length?.toString() ?? "0"
           }
+          color="text-amber-600 dark:text-amber-400"
+          bg="bg-amber-50 dark:bg-amber-900/20"
         />
-        <StatCard icon={Activity} label="Signals (24h)" value="-" />
-        <StatCard icon={Brain} label="Clusters" value="-" />
-        <StatCard icon={BarChart3} label="Events (24h)" value="-" />
+        <StatCard
+          icon={Activity}
+          label="Signals (24h)"
+          value="-"
+          color="text-teal-600 dark:text-teal-400"
+          bg="bg-teal-50 dark:bg-teal-900/20"
+        />
+        <StatCard
+          icon={Brain}
+          label="Clusters"
+          value="-"
+          color="text-violet-600 dark:text-violet-400"
+          bg="bg-violet-50 dark:bg-violet-900/20"
+        />
+        <StatCard
+          icon={BarChart3}
+          label="Events (24h)"
+          value="-"
+          color="text-emerald-600 dark:text-emerald-400"
+          bg="bg-emerald-50 dark:bg-emerald-900/20"
+        />
       </div>
 
       <p className="mt-8 text-sm text-text-tertiary">
@@ -76,10 +96,14 @@ function StatCard({
   icon: Icon,
   label,
   value,
+  color,
+  bg,
 }: {
   icon: typeof Users;
   label: string;
   value: string | undefined;
+  color: string;
+  bg: string;
 }) {
   return (
     <Card>
@@ -93,7 +117,7 @@ function StatCard({
               <p className="text-2xl font-bold mt-1">{value}</p>
             )}
           </div>
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-400">
+          <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${bg} ${color}`}>
             <Icon className="h-5 w-5" />
           </div>
         </div>

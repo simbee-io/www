@@ -20,7 +20,7 @@ export default function RecipesPage() {
         for deeper explanation.
       </p>
 
-      <nav className="rounded-lg border border-border bg-surface-raised p-4 mb-10">
+      <nav className="rounded-xl border border-border bg-surface-raised p-4 mb-10">
         <p className="font-semibold text-sm mb-2">Recipes</p>
         <ol className="list-decimal list-inside text-sm space-y-1 text-text-secondary">
           <li><a href="#content-recommendation" className="hover:text-text transition-colors">Content recommendation</a></li>
