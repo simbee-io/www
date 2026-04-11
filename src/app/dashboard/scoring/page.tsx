@@ -37,7 +37,7 @@ export default function ScoringPage() {
           <Loader2 className="h-5 w-5 animate-spin text-neutral-400 dark:text-neutral-500" />
         </div>
       ) : error ? (
-        <div className="flex items-center gap-2 py-12 justify-center text-sm text-error">
+        <div className="flex items-center gap-2 py-12 justify-center text-sm text-red-600 dark:text-red-400">
           <AlertCircle className="h-4 w-4" />
           {error}
         </div>

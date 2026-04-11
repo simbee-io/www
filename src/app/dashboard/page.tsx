@@ -4,11 +4,10 @@ import { useAuth } from "@/lib/auth";
 import { useApi } from "@/lib/use-api";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Users, Activity, Brain, BarChart3, Loader2 } from "lucide-react";
+import { Users, Loader2 } from "lucide-react";
 
 interface UsersList {
   data: Array<{ id: string }>;
-  meta?: { total_count?: number };
 }
 
 export default function DashboardOverview() {
@@ -16,7 +15,7 @@ export default function DashboardOverview() {
   const clientId = session?.client.id;
 
   const { data: users, loading: usersLoading } = useApi<UsersList>(
-    clientId ? "/api/v1/users?per_page=1" : null
+    clientId ? `/api/v1/clients/${clientId}/users` : null
   );
 
   return (
@@ -48,7 +47,7 @@ export default function DashboardOverview() {
         </CardContent>
       </Card>
 
-      {/* Stats grid */}
+      {/* Stats */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard
           icon={Users}
@@ -56,38 +55,12 @@ export default function DashboardOverview() {
           value={
             usersLoading
               ? undefined
-              : users?.meta?.total_count?.toString() ?? users?.data?.length?.toString() ?? "0"
+              : users?.data?.length?.toString() ?? "0"
           }
           color="text-amber-600 dark:text-amber-400"
           bg="bg-amber-50 dark:bg-amber-500/10"
         />
-        <StatCard
-          icon={Activity}
-          label="Signals (24h)"
-          value="-"
-          color="text-teal-600 dark:text-teal-400"
-          bg="bg-teal-50 dark:bg-teal-500/10"
-        />
-        <StatCard
-          icon={Brain}
-          label="Clusters"
-          value="-"
-          color="text-violet-600 dark:text-violet-400"
-          bg="bg-violet-50 dark:bg-violet-500/10"
-        />
-        <StatCard
-          icon={BarChart3}
-          label="Events (24h)"
-          value="-"
-          color="text-emerald-600 dark:text-emerald-400"
-          bg="bg-emerald-50 dark:bg-emerald-500/10"
-        />
       </div>
-
-      <p className="mt-8 text-sm text-neutral-400 dark:text-neutral-500">
-        Detailed analytics are available once your tenant has activity. Start by
-        creating users and recording signals.
-      </p>
     </div>
   );
 }

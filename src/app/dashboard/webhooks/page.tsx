@@ -76,19 +76,24 @@ export default function WebhooksPage() {
     });
   }
 
+  const [deleteError, setDeleteError] = useState("");
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
   async function handleCreate(e: React.FormEvent) {
     e.preventDefault();
     if (selectedEvents.size === 0) {
       setCreateError("Select at least one event type.");
       return;
     }
+    const token = session?.token;
+    if (!token || !clientId) return;
     setCreating(true);
     setCreateError("");
 
     try {
       await apiFetch(`/api/v1/clients/${clientId}/webhook_subscriptions`, {
         method: "POST",
-        token: session!.token,
+        token,
         body: JSON.stringify({
           url,
           event_types: [...selectedEvents],
@@ -106,14 +111,20 @@ export default function WebhooksPage() {
   }
 
   async function handleDelete(id: string) {
+    const token = session?.token;
+    if (!token || !clientId) return;
+    setDeletingId(id);
+    setDeleteError("");
     try {
       await apiFetch(
         `/api/v1/clients/${clientId}/webhook_subscriptions/${id}`,
-        { method: "DELETE", token: session!.token }
+        { method: "DELETE", token }
       );
       refetch();
-    } catch {
-      // Silent — list will show stale state
+    } catch (err) {
+      setDeleteError(err instanceof Error ? err.message : "Failed to delete webhook");
+    } finally {
+      setDeletingId(null);
     }
   }
 
@@ -184,7 +195,7 @@ export default function WebhooksPage() {
               </div>
             </div>
             {createError && (
-              <p className="text-sm text-error">{createError}</p>
+              <p className="text-sm text-red-600 dark:text-red-400">{createError}</p>
             )}
             <div className="flex gap-2">
               <Button type="submit" disabled={creating}>
@@ -206,13 +217,20 @@ export default function WebhooksPage() {
         </Card>
       )}
 
+      {deleteError && (
+        <div className="flex items-center gap-2 mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+          <AlertCircle className="h-4 w-4 shrink-0" />
+          {deleteError}
+        </div>
+      )}
+
       {/* List */}
       {loading ? (
         <div className="flex items-center justify-center py-12">
           <Loader2 className="h-5 w-5 animate-spin text-neutral-400 dark:text-neutral-500" />
         </div>
       ) : error ? (
-        <div className="flex items-center gap-2 py-12 justify-center text-sm text-error">
+        <div className="flex items-center gap-2 py-12 justify-center text-sm text-red-600 dark:text-red-400">
           <AlertCircle className="h-4 w-4" />
           {error}
         </div>
@@ -248,10 +266,15 @@ export default function WebhooksPage() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 text-neutral-400 dark:text-neutral-500 hover:text-error shrink-0"
+                  className="h-8 w-8 text-neutral-400 dark:text-neutral-500 hover:text-red-600 shrink-0"
                   onClick={() => handleDelete(webhook.id)}
+                  disabled={deletingId === webhook.id}
                 >
-                  <Trash2 className="h-3.5 w-3.5" />
+                  {deletingId === webhook.id ? (
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  ) : (
+                    <Trash2 className="h-3.5 w-3.5" />
+                  )}
                 </Button>
               </div>
             </Card>

@@ -32,7 +32,8 @@ interface ApiKeysResponse {
 }
 
 interface CreateKeyResponse {
-  data: ApiKey & { key: string };
+  raw_key: string;
+  record: ApiKey;
 }
 
 export default function ApiKeysPage() {
@@ -48,24 +49,33 @@ export default function ApiKeysPage() {
   const [createdKey, setCreatedKey] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  const { mutate: createKey, submitting: creating } = useApiMutation<
+  const { mutate: createKey, submitting: creating, error: createError } = useApiMutation<
     { name: string },
     CreateKeyResponse
-  >(clientId ? `/api/v1/clients/${clientId}/api_keys` : "");
+  >(clientId ? `/api/v1/clients/${clientId}/api_keys` : "/noop");
+
+  const [revokeError, setRevokeError] = useState<string | null>(null);
+  const [revokingId, setRevokingId] = useState<string | null>(null);
 
   async function handleCreate(e: React.FormEvent) {
     e.preventDefault();
-    const res = await createKey({ name: newKeyName });
-    if (res) {
-      setCreatedKey(res.data.key);
-      setNewKeyName("");
-      refetch();
+    try {
+      const res = await createKey({ name: newKeyName });
+      if (res) {
+        setCreatedKey(res.raw_key);
+        setNewKeyName("");
+        refetch();
+      }
+    } catch {
+      // error state is set by useApiMutation
     }
   }
 
   async function handleRevoke(keyId: string) {
-    const token = session ? session.token : null;
+    const token = session?.token;
     if (!token || !clientId) return;
+    setRevokingId(keyId);
+    setRevokeError(null);
     try {
       const { apiFetch } = await import("@/lib/api");
       await apiFetch(`/api/v1/clients/${clientId}/api_keys/${keyId}/revoke`, {
@@ -73,8 +83,10 @@ export default function ApiKeysPage() {
         token,
       });
       refetch();
-    } catch {
-      // Error handled by UI
+    } catch (err) {
+      setRevokeError(err instanceof Error ? err.message : "Failed to revoke key");
+    } finally {
+      setRevokingId(null);
     }
   }
 
@@ -165,13 +177,20 @@ export default function ApiKeysPage() {
         </Card>
       )}
 
+      {(createError || revokeError) && (
+        <div className="flex items-center gap-2 mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+          <AlertCircle className="h-4 w-4 shrink-0" />
+          {createError || revokeError}
+        </div>
+      )}
+
       {/* Keys list */}
       {loading ? (
         <div className="flex items-center justify-center py-12">
           <Loader2 className="h-5 w-5 animate-spin text-neutral-400 dark:text-neutral-500" />
         </div>
       ) : error ? (
-        <div className="flex items-center gap-2 py-12 justify-center text-sm text-error">
+        <div className="flex items-center gap-2 py-12 justify-center text-sm text-red-600 dark:text-red-400">
           <AlertCircle className="h-4 w-4" />
           {error}
         </div>
@@ -236,10 +255,15 @@ export default function ApiKeysPage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-neutral-400 dark:text-neutral-500 hover:text-error"
+                          className="h-8 w-8 text-neutral-400 dark:text-neutral-500 hover:text-red-600"
                           onClick={() => handleRevoke(key.id)}
+                          disabled={revokingId === key.id}
                         >
-                          <Trash2 className="h-3.5 w-3.5" />
+                          {revokingId === key.id ? (
+                            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                          ) : (
+                            <Trash2 className="h-3.5 w-3.5" />
+                          )}
                         </Button>
                       )}
                     </td>

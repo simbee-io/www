@@ -45,6 +45,7 @@ interface SignupResponse {
   user: AuthUser;
   token: string;
   scopes: string[];
+  expires_in: number;
 }
 
 interface AuthContextValue {
@@ -154,7 +155,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
       const s: Session = {
         token: res.token,
-        expiresAt: Date.now() + 900 * 1000,
+        expiresAt: Date.now() + res.expires_in * 1000,
         scopes: res.scopes,
         user: res.user,
         client: res.client,

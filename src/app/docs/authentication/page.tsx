@@ -95,8 +95,8 @@ const { data } = await auth.createAuthSignup({
   company_name: "Acme Corp",
 });
 
-console.log(data.data.client.id); // Your client ID
-console.log(data.data.token);     // Initial JWT`,
+console.log(data.client.id); // Your client ID
+console.log(data.token);     // Initial JWT`,
             },
             {
               label: "Ruby",
@@ -115,8 +115,8 @@ result = auth.create_auth_signup(
   )
 )
 
-puts result.data.client.id  # Your client ID
-puts result.data.token       # Initial JWT`,
+puts result.client.id  # Your client ID
+puts result.token       # Initial JWT`,
             },
             {
               label: "Python",
@@ -136,8 +136,8 @@ with ApiClient(config) as client:
         )
     )
 
-    print(result.data.client.id)  # Your client ID
-    print(result.data.token)       # Initial JWT`,
+    print(result.client.id)  # Your client ID
+    print(result.token)       # Initial JWT`,
             },
           ]}
         />
@@ -146,22 +146,21 @@ with ApiClient(config) as client:
         <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 201 Created
 {
-  "data": {
-    "client": {
-      "id": "cl_abc123",
-      "slug": "acme-corp",
-      "name": "Acme Corp",
-      "status": "active",
-      "tier": "graph"
-    },
-    "user": {
-      "id": "cu_xyz789",
-      "email": "alice@example.com",
-      "role": "owner"
-    },
-    "token": "eyJhbGciOiJFZERTQSIs...",
-    "scopes": ["admin", "read", "write"]
-  }
+  "client": {
+    "id": "cl_abc123",
+    "slug": "acme-corp",
+    "name": "Acme Corp",
+    "status": "active",
+    "tier": "graph"
+  },
+  "user": {
+    "id": "cu_xyz789",
+    "email": "alice@example.com",
+    "role": "owner"
+  },
+  "token": "eyJhbGciOiJFZERTQSIs...",
+  "scopes": ["admin", "read", "write"],
+  "expires_in": 900
 }`}</code>
         </pre>
         <p className="text-sm mt-2 text-neutral-500 dark:text-neutral-400">
@@ -204,7 +203,7 @@ const { data } = await keys.createApiV1AdminApiKey(
 );
 
 // Store this securely — shown only once
-console.log(data.data.key);`,
+console.log(data.raw_key);`,
             },
             {
               label: "Ruby",
@@ -220,7 +219,7 @@ result = keys_api.create_api_v1_admin_api_key(
 )
 
 # Store this securely — shown only once
-puts result.data.key`,
+puts result.raw_key`,
             },
             {
               label: "Python",
@@ -241,7 +240,7 @@ with ApiClient(config) as client:
     )
 
     # Store this securely — shown only once
-    print(result.data.key)`,
+    print(result.raw_key)`,
             },
           ]}
         />
@@ -250,11 +249,11 @@ with ApiClient(config) as client:
         <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 201 Created
 {
-  "data": {
+  "raw_key": "simbee_aBcDeFgHiJkLmNoPqRsTuVwXyZ",
+  "record": {
     "id": "ak_def456",
     "client_id": "cl_abc123",
     "name": "production",
-    "key": "simbee_aBcDeFgHiJkLmNoPqRsTuVwXyZ",
     "fingerprint": "fp_a1b2c3",
     "revoked": false,
     "created_at": "2026-04-11T12:00:00Z"
@@ -274,6 +273,79 @@ with ApiClient(config) as client:
           (900 seconds) by default.
         </p>
 
+        <h3 className="text-lg font-semibold mb-2">Email login</h3>
+        <p className="mb-4 text-sm text-neutral-500 dark:text-neutral-400">
+          The simplest way to authenticate. Provide the email and password used
+          during signup.
+        </p>
+
+        <CodeTabs
+          tabs={[
+            {
+              label: "cURL",
+              code: `curl -X POST https://api.simbee.io/auth/token \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "email": "alice@example.com",
+    "password": "a-strong-password"
+  }'`,
+            },
+            {
+              label: "TypeScript",
+              code: `import { AuthenticationApi, Configuration } from "@simbee-io/client";
+
+const config = new Configuration({
+  basePath: "https://api.simbee.io",
+});
+const auth = new AuthenticationApi(config);
+
+const { data } = await auth.createAuthToken({
+  email: "alice@example.com",
+  password: "a-strong-password",
+});
+
+const token = data.token;
+const expiresIn = data.expires_in; // 900`,
+            },
+            {
+              label: "Ruby",
+              code: `auth = SimbeeClient::AuthenticationApi.new
+result = auth.create_auth_token(
+  SimbeeClient::CreateToken.new(
+    email: "alice@example.com",
+    password: "a-strong-password"
+  )
+)
+
+token = result.token
+expires_in = result.expires_in  # 900`,
+            },
+            {
+              label: "Python",
+              code: `from simbee_client.api import AuthenticationApi
+from simbee_client.models import CreateToken
+
+auth = AuthenticationApi(client)
+result = auth.create_auth_token(
+    CreateToken(
+        email="alice@example.com",
+        password="a-strong-password",
+    )
+)
+
+token = result.token
+expires_in = result.expires_in  # 900`,
+            },
+          ]}
+        />
+
+        <h3 className="text-lg font-semibold mt-6 mb-2">Programmatic login</h3>
+        <p className="mb-4 text-sm text-neutral-500 dark:text-neutral-400">
+          For service-to-service or automated flows, authenticate with{" "}
+          <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">client_id</code> and{" "}
+          <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">user_id</code> instead of email.
+        </p>
+
         <CodeTabs
           tabs={[
             {
@@ -288,26 +360,17 @@ with ApiClient(config) as client:
             },
             {
               label: "TypeScript",
-              code: `import { AuthenticationApi, Configuration } from "@simbee-io/client";
-
-const config = new Configuration({
-  basePath: "https://api.simbee.io",
-});
-const auth = new AuthenticationApi(config);
-
-const { data } = await auth.createAuthToken({
+              code: `const { data } = await auth.createAuthToken({
   client_id: "cl_abc123",
   user_id: "owner",
   password: "a-strong-password",
 });
 
-const token = data.data.token;
-const expiresIn = data.data.expires_in; // 900`,
+const token = data.token;`,
             },
             {
               label: "Ruby",
-              code: `auth = SimbeeClient::AuthenticationApi.new
-result = auth.create_auth_token(
+              code: `result = auth.create_auth_token(
   SimbeeClient::CreateToken.new(
     client_id: "cl_abc123",
     user_id: "owner",
@@ -315,16 +378,11 @@ result = auth.create_auth_token(
   )
 )
 
-token = result.data.token
-expires_in = result.data.expires_in  # 900`,
+token = result.token`,
             },
             {
               label: "Python",
-              code: `from simbee_client.api import AuthenticationApi
-from simbee_client.models import CreateToken
-
-auth = AuthenticationApi(client)
-result = auth.create_auth_token(
+              code: `result = auth.create_auth_token(
     CreateToken(
         client_id="cl_abc123",
         user_id="owner",
@@ -332,8 +390,7 @@ result = auth.create_auth_token(
     )
 )
 
-token = result.data.token
-expires_in = result.data.expires_in  # 900`,
+token = result.token`,
             },
           ]}
         />
@@ -342,10 +399,18 @@ expires_in = result.data.expires_in  # 900`,
         <pre className="rounded-md bg-neutral-950 text-neutral-300 p-4 text-sm overflow-x-auto">
           <code>{`// 200 OK
 {
-  "data": {
-    "token": "eyJhbGciOiJFZERTQSIs...",
-    "scopes": ["admin", "read", "write"],
-    "expires_in": 900
+  "token": "eyJhbGciOiJFZERTQSIs...",
+  "scopes": ["admin", "read", "write"],
+  "expires_in": 900,
+  "user": {
+    "id": "cu_xyz789",
+    "email": "alice@example.com",
+    "role": "owner"
+  },
+  "client": {
+    "id": "cl_abc123",
+    "slug": "acme-corp",
+    "name": "Acme Corp"
   }
 }`}</code>
         </pre>
@@ -479,8 +544,7 @@ with ApiClient(config) as client:
   private expiresAt = 0;
 
   constructor(
-    private clientId: string,
-    private userId: string,
+    private email: string,
     private password: string,
   ) {}
 
@@ -492,12 +556,11 @@ with ApiClient(config) as client:
       new Configuration({ basePath: "https://api.simbee.io" })
     );
     const { data } = await auth.createAuthToken({
-      client_id: this.clientId,
-      user_id: this.userId,
+      email: this.email,
       password: this.password,
     });
-    this.token = data.data.token;
-    this.expiresAt = Date.now() + data.data.expires_in * 1000;
+    this.token = data.token;
+    this.expiresAt = Date.now() + data.expires_in * 1000;
     return this.token;
   }
 }`,
@@ -505,9 +568,8 @@ with ApiClient(config) as client:
             {
               label: "Ruby",
               code: `class SimbeeAuth
-  def initialize(client_id:, user_id:, password:)
-    @client_id = client_id
-    @user_id = user_id
+  def initialize(email:, password:)
+    @email = email
     @password = password
     @token = nil
     @expires_at = Time.at(0)
@@ -519,13 +581,12 @@ with ApiClient(config) as client:
     auth = SimbeeClient::AuthenticationApi.new
     result = auth.create_auth_token(
       SimbeeClient::CreateToken.new(
-        client_id: @client_id,
-        user_id: @user_id,
+        email: @email,
         password: @password
       )
     )
-    @token = result.data.token
-    @expires_at = Time.now + result.data.expires_in
+    @token = result.token
+    @expires_at = Time.now + result.expires_in
     @token
   end
 end`,
@@ -539,9 +600,8 @@ from simbee_client.models import CreateToken
 
 
 class SimbeeAuth:
-    def __init__(self, client_id: str, user_id: str, password: str):
-        self.client_id = client_id
-        self.user_id = user_id
+    def __init__(self, email: str, password: str):
+        self.email = email
         self.password = password
         self._token: str | None = None
         self._expires_at: float = 0
@@ -555,13 +615,12 @@ class SimbeeAuth:
             auth = AuthenticationApi(client)
             result = auth.create_auth_token(
                 CreateToken(
-                    client_id=self.client_id,
-                    user_id=self.user_id,
+                    email=self.email,
                     password=self.password,
                 )
             )
-        self._token = result.data.token
-        self._expires_at = time.time() + result.data.expires_in
+        self._token = result.token
+        self._expires_at = time.time() + result.expires_in
         return self._token`,
             },
           ]}

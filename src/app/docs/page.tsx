@@ -144,7 +144,7 @@ export default function DocsHome() {
           title="Authenticate"
           code={`curl -X POST https://api.simbee.io/auth/token \\
   -H "Content-Type: application/json" \\
-  -d '{"client_id": "YOUR_CLIENT_ID", "user_id": "owner", "password": "..."}'`}
+  -d '{"email": "you@example.com", "password": "..."}'`}
         />
         <QuickstartStep
           number="3"

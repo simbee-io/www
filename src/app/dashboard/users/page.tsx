@@ -3,12 +3,9 @@
 import { useState } from "react";
 import { useApi } from "@/lib/use-api";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import {
-  ChevronLeft,
-  ChevronRight,
   Loader2,
   Search,
   AlertCircle,
@@ -24,26 +21,18 @@ interface User {
 
 interface UsersResponse {
   data: User[];
-  meta?: {
-    total_count?: number;
-    page?: number;
-    per_page?: number;
-  };
 }
 
 export default function UsersPage() {
-  const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const perPage = 20;
 
-  const query = search
-    ? `/api/v1/users?page=${page}&per_page=${perPage}&q=${encodeURIComponent(search)}`
-    : `/api/v1/users?page=${page}&per_page=${perPage}`;
+  const { data, loading, error } = useApi<UsersResponse>("/api/v1/users");
 
-  const { data, loading, error } = useApi<UsersResponse>(query);
-
-  const totalCount = data?.meta?.total_count ?? data?.data?.length ?? 0;
-  const hasNext = data?.data?.length === perPage;
+  const filtered = search
+    ? data?.data?.filter((u) =>
+        u.external_id.toLowerCase().includes(search.toLowerCase())
+      )
+    : data?.data;
 
   return (
     <div>
@@ -63,10 +52,7 @@ export default function UsersPage() {
             placeholder="Search by external ID..."
             className="pl-9"
             value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-              setPage(1);
-            }}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
       </div>
@@ -76,95 +62,67 @@ export default function UsersPage() {
           <Loader2 className="h-5 w-5 animate-spin text-neutral-400 dark:text-neutral-500" />
         </div>
       ) : error ? (
-        <div className="flex items-center gap-2 py-12 justify-center text-sm text-error">
+        <div className="flex items-center gap-2 py-12 justify-center text-sm text-red-600 dark:text-red-400">
           <AlertCircle className="h-4 w-4" />
           {error}
         </div>
-      ) : data?.data?.length === 0 ? (
+      ) : !filtered?.length ? (
         <div className="text-center py-12 text-neutral-500 dark:text-neutral-400 text-sm">
           {search ? "No users match your search." : "No users yet. Create your first user via the API."}
         </div>
       ) : (
-        <>
-          <Card>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-neutral-200 dark:border-neutral-800">
-                    <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
-                      External ID
-                    </th>
-                    <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
-                      ID
-                    </th>
-                    <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
-                      Status
-                    </th>
-                    <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
-                      Created
-                    </th>
+        <Card>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-neutral-200 dark:border-neutral-800">
+                  <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
+                    External ID
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
+                    ID
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
+                    Status
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
+                    Created
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map((user) => (
+                  <tr
+                    key={user.id}
+                    className="border-b border-neutral-200 dark:border-neutral-800 last:border-0 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors"
+                  >
+                    <td className="px-4 py-3 font-mono text-xs">
+                      {user.external_id}
+                    </td>
+                    <td className="px-4 py-3 font-mono text-xs text-neutral-500 dark:text-neutral-400">
+                      {user.id}
+                    </td>
+                    <td className="px-4 py-3">
+                      <Badge
+                        variant={
+                          user.status === "active" ? "success" : "secondary"
+                        }
+                      >
+                        {user.status}
+                      </Badge>
+                    </td>
+                    <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">
+                      {new Date(user.created_at).toLocaleDateString()}
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {data?.data?.map((user) => (
-                    <tr
-                      key={user.id}
-                      className="border-b border-neutral-200 dark:border-neutral-800 last:border-0 hover:bg-neutral-50 dark:bg-neutral-950 transition-colors"
-                    >
-                      <td className="px-4 py-3 font-mono text-xs">
-                        {user.external_id}
-                      </td>
-                      <td className="px-4 py-3 font-mono text-xs text-neutral-500 dark:text-neutral-400">
-                        {user.id}
-                      </td>
-                      <td className="px-4 py-3">
-                        <Badge
-                          variant={
-                            user.status === "active" ? "success" : "secondary"
-                          }
-                        >
-                          {user.status}
-                        </Badge>
-                      </td>
-                      <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">
-                        {new Date(user.created_at).toLocaleDateString()}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Card>
-
-          <div className="flex items-center justify-between mt-4">
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              {totalCount > 0 && `${totalCount} user${totalCount === 1 ? "" : "s"}`}
-            </p>
-            <div className="flex items-center gap-2">
-              <Button
-                variant="secondary"
-                size="sm"
-                disabled={page === 1}
-                onClick={() => setPage((p) => p - 1)}
-              >
-                <ChevronLeft className="h-4 w-4" />
-                Previous
-              </Button>
-              <span className="text-sm text-neutral-500 dark:text-neutral-400 px-2">
-                Page {page}
-              </span>
-              <Button
-                variant="secondary"
-                size="sm"
-                disabled={!hasNext}
-                onClick={() => setPage((p) => p + 1)}
-              >
-                Next
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </div>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </>
+          <div className="px-4 py-3 border-t border-neutral-200 dark:border-neutral-800 text-sm text-neutral-500 dark:text-neutral-400">
+            {filtered.length} user{filtered.length === 1 ? "" : "s"}
+          </div>
+        </Card>
       )}
     </div>
   );

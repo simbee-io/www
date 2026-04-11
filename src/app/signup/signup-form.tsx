@@ -29,7 +29,6 @@ export function SignupForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [companyName, setCompanyName] = useState("");
-  const [tier, setTier] = useState<"graph" | "discovery">("graph");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -40,7 +39,7 @@ export function SignupForm() {
     setSubmitting(true);
 
     try {
-      const data = await signup(email, password, companyName, tier);
+      const data = await signup(email, password, companyName);
 
       // Create the first API key automatically
       const keyRes = await apiFetch<{
@@ -115,7 +114,7 @@ export function SignupForm() {
               title="Authenticate"
               code={`curl -X POST ${process.env.NEXT_PUBLIC_API_URL || "https://api.simbee.io"}/auth/token \\
   -H "Content-Type: application/json" \\
-  -d '{"client_id": "${result.clientId}", "user_id": "owner", "password": "YOUR_PASSWORD"}'`}
+  -d '{"email": "YOUR_EMAIL", "password": "YOUR_PASSWORD"}'`}
             />
             <QuickstartStep
               number="2"
@@ -189,23 +188,6 @@ export function SignupForm() {
             required
           />
         </div>
-        <div className="space-y-2">
-          <Label>Tier</Label>
-          <div className="grid grid-cols-2 gap-3">
-            <TierOption
-              selected={tier === "graph"}
-              onSelect={() => setTier("graph")}
-              name="Graph"
-              description="Signals, affinities, vocabulary, analytics"
-            />
-            <TierOption
-              selected={tier === "discovery"}
-              onSelect={() => setTier("discovery")}
-              name="Discovery"
-              description="Everything in Graph + scoring, clustering, campaigns, feed"
-            />
-          </div>
-        </div>
       </div>
 
       {error && (
@@ -225,33 +207,6 @@ export function SignupForm() {
         </Link>
       </p>
     </form>
-  );
-}
-
-function TierOption({
-  selected,
-  onSelect,
-  name,
-  description,
-}: {
-  selected: boolean;
-  onSelect: () => void;
-  name: string;
-  description: string;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onSelect}
-      className={`rounded-xl border p-3 text-left transition-all cursor-pointer ${
-        selected
-          ? "border-amber-500 bg-amber-50 shadow-sm dark:bg-amber-950/30"
-          : "border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:border-neutral-700 hover:shadow-sm"
-      }`}
-    >
-      <div className="text-sm font-medium">{name}</div>
-      <div className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">{description}</div>
-    </button>
   );
 }
 
