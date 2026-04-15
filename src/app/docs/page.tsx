@@ -1,3 +1,4 @@
+// Copy revised by Claude Code — review before deploy
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
@@ -87,11 +88,9 @@ export default function DocsHome() {
     <div>
       <h1 className="text-3xl font-bold mb-3">Simbee Documentation</h1>
       <p className="text-lg text-neutral-500 dark:text-neutral-400 mb-10 max-w-2xl leading-relaxed">
-        Simbee is an API platform that turns user behavior into structured
-        relationships, recommendations, and insights. It provides composable
-        primitives — signals, affinities, vocabulary, scoring, clustering,
-        campaigns, and feed — that your application composes to build
-        personalization, discovery, and analytics features.
+        Everything you need to turn user behavior into ranked feeds, smart
+        groupings, and clean analytics — reference, recipes, and the SDKs to
+        get there. Start with Getting Started if you're new.
       </p>
 
       <h2 className="text-xl font-semibold mb-4">Guides</h2>
@@ -122,7 +121,7 @@ export default function DocsHome() {
 
       <h2 id="sdks" className="text-xl font-semibold mb-3">SDKs</h2>
       <p className="text-neutral-500 dark:text-neutral-400 mb-3">
-        Typed clients are available for all three major server languages:
+        Use a typed client in your language of choice:
       </p>
       <div className="grid gap-2 sm:grid-cols-3 mb-10">
         <SdkCard lang="TypeScript" pkg="@simbee-io/client" registry="npm" />

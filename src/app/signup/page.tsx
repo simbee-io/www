@@ -1,3 +1,4 @@
+// Copy revised by Claude Code — review before deploy
 import type { Metadata } from "next";
 import { SignupForm } from "./signup-form";
 
@@ -12,9 +13,10 @@ export default function SignupPage() {
         <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 shadow-lg shadow-amber-500/20 mb-4">
           <HexIcon className="h-6 w-6 text-white" />
         </div>
-        <h1 className="text-3xl font-bold tracking-tight">Create your account</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Start building</h1>
         <p className="mt-2 text-neutral-500 dark:text-neutral-400">
-          Get your API key and start building in under a minute.
+          Create your account, grab an API key, and make your first call in
+          under a minute.
         </p>
       </div>
       <SignupForm />

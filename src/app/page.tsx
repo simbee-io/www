@@ -1,3 +1,4 @@
+// Copy revised by Claude Code — review before deploy
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +23,7 @@ const primitives = [
     icon: BookOpen,
     name: "Vocabulary",
     description:
-      "Define your domain's taxonomy with tags and topics. The shared language that all other primitives reference.",
+      "Teach the platform your domain. Tags and topics become the shared language every other primitive understands.",
     gradient: "from-amber-500 to-orange-500",
     bg: "bg-amber-500/10 dark:bg-amber-500/15",
     text: "text-amber-600 dark:text-amber-400",
@@ -32,7 +33,7 @@ const primitives = [
     icon: Activity,
     name: "Signals",
     description:
-      "Capture behavioral events — likes, purchases, enrollments, views. Configurable signal types that model any user action.",
+      "Track what your users actually do. Likes, purchases, enrollments, views — any event, any weight, shaped to your product.",
     gradient: "from-orange-500 to-red-500",
     bg: "bg-orange-500/10 dark:bg-orange-500/15",
     text: "text-orange-600 dark:text-orange-400",
@@ -42,7 +43,7 @@ const primitives = [
     icon: Network,
     name: "Affinities",
     description:
-      "Computed relationship strengths between users and your vocabulary. Signals in, structured relationships out.",
+      "Skip the modeling work. Send signals in, get ranked relationships between users and topics out — computed automatically.",
     gradient: "from-teal-500 to-cyan-500",
     bg: "bg-teal-500/10 dark:bg-teal-500/15",
     text: "text-teal-600 dark:text-teal-400",
@@ -52,7 +53,7 @@ const primitives = [
     icon: Target,
     name: "Scoring",
     description:
-      'Configurable ranking presets that control what "relevant" means. Different presets, different results, same data.',
+      'Decide what "relevant" means for your product. Swap presets to reshape results without touching the underlying data.',
     gradient: "from-violet-500 to-purple-500",
     bg: "bg-violet-500/10 dark:bg-violet-500/15",
     text: "text-violet-600 dark:text-violet-400",
@@ -62,7 +63,7 @@ const primitives = [
     icon: Brain,
     name: "Clustering",
     description:
-      "Automatic user segmentation via FAISS + HDBSCAN. Groups form from behavior, not manual rules.",
+      "Discover user segments you didn't know existed. FAISS + HDBSCAN surface groups from behavior — no manual rules required.",
     gradient: "from-rose-500 to-pink-500",
     bg: "bg-rose-500/10 dark:bg-rose-500/15",
     text: "text-rose-600 dark:text-rose-400",
@@ -72,7 +73,7 @@ const primitives = [
     icon: Radio,
     name: "Campaigns",
     description:
-      "Targeted content delivery with budget management, item targeting, and impression tracking.",
+      "Put the right content in front of the right users. Budget controls, item targeting, and impression tracking built in.",
     gradient: "from-sky-500 to-blue-500",
     bg: "bg-sky-500/10 dark:bg-sky-500/15",
     text: "text-sky-600 dark:text-sky-400",
@@ -82,7 +83,7 @@ const primitives = [
     icon: Zap,
     name: "Feed",
     description:
-      "Personalized content streams ranked by scoring presets. The composition of signals, affinities, and scoring into a product feature.",
+      "Ship a personalized feed without running a recommender. One call returns a ranked stream — signals, affinities, and scoring already composed.",
     gradient: "from-yellow-500 to-amber-500",
     bg: "bg-yellow-500/10 dark:bg-yellow-500/15",
     text: "text-yellow-600 dark:text-yellow-400",
@@ -92,7 +93,7 @@ const primitives = [
     icon: BarChart3,
     name: "Analytics",
     description:
-      "Aggregate insights from event streams. Engagement trends, affinity coverage, cluster composition, campaign performance.",
+      "See what's working without building a data pipeline. Engagement, affinity coverage, cluster shape, and campaign performance — queryable out of the box.",
     gradient: "from-emerald-500 to-green-500",
     bg: "bg-emerald-500/10 dark:bg-emerald-500/15",
     text: "text-emerald-600 dark:text-emerald-400",
@@ -104,37 +105,37 @@ const useCases = [
   {
     title: "Creator & fan platforms",
     description:
-      "Consent-layered matching, affinity-ranked feed, fan engagement signals.",
+      "Match fans to creators they'll actually stick with, and keep private tiers private.",
     primitives: ["Signals", "Affinities", "Feed", "Scoring"],
   },
   {
     title: "Community apps",
     description:
-      "Interest clustering, topic-based affinity, user segmentation analytics.",
+      "Surface the interest groups already forming inside your product — without hand-curating a single one.",
     primitives: ["Vocabulary", "Clustering", "Analytics"],
   },
   {
     title: "Marketplaces",
     description:
-      "Buyer/seller scoring, campaign-driven promotion, engagement tracking.",
+      "Promote the right listings to the right buyers and measure what the promotion actually earned.",
     primitives: ["Scoring", "Campaigns", "Analytics"],
   },
   {
     title: "Content platforms",
     description:
-      "Behavioral recommendation, content affinity, personalized feed ranking.",
+      "Turn passive watch time into a feed that keeps getting sharper the longer users stay.",
     primitives: ["Signals", "Affinities", "Feed"],
   },
   {
     title: "Learning platforms",
     description:
-      "Skill-based clustering, peer matching, progress signals.",
+      "Pair learners by skill, not by guesswork — and watch cohorts form as they progress.",
     primitives: ["Clustering", "Scoring", "Signals"],
   },
   {
     title: "Professional networks",
     description:
-      "Role-tagged vocabulary, expertise affinity, introduction scoring.",
+      "Introduce people who should actually meet. Expertise-weighted matches, ranked by likely signal.",
     primitives: ["Vocabulary", "Affinities", "Scoring"],
   },
 ] as const;
@@ -142,33 +143,33 @@ const useCases = [
 const architectureFeatures = [
   {
     icon: Lock,
-    title: "Encrypted by default",
+    title: "User PII stays encrypted — no extra work",
     description:
-      "All PII is encrypted at rest via ShrouDB Cipher. Field-level encryption, blind search indexes, zero plaintext storage.",
+      "Field-level encryption and blind search indexes run through ShrouDB Cipher by default. You never store plaintext.",
     color: "text-rose-600 dark:text-rose-400",
     bg: "bg-rose-50 dark:bg-rose-500/10",
   },
   {
     icon: Users,
-    title: "Multi-tenant isolation",
+    title: "Tenants are isolated from the first request",
     description:
-      "Every API call is scoped to a client. Full data isolation, per-tenant configuration, independent scaling.",
+      "Every call is scoped to a client. Data, configuration, and scaling stay separate — no shared-state footguns to discover later.",
     color: "text-sky-600 dark:text-sky-400",
     bg: "bg-sky-50 dark:bg-sky-500/10",
   },
   {
     icon: ShieldCheck,
-    title: "Consent layers",
+    title: "Ship private tiers without building your own consent layer",
     description:
-      "Scope what data is visible and matchable. Different interaction tiers for different trust levels, built into the data model.",
+      "Scope visibility and matchability per trust level. The data model already treats consent as a first-class filter.",
     color: "text-emerald-600 dark:text-emerald-400",
     bg: "bg-emerald-50 dark:bg-emerald-500/10",
   },
   {
     icon: Layers,
-    title: "Composable tiers",
+    title: "Pay only for the tier you use",
     description:
-      "Start with the graph — signals, affinities, vocabulary. Add discovery when you need scoring, clustering, campaigns, and feed.",
+      "Start with the graph — signals, affinities, vocabulary. Turn on scoring, clustering, campaigns, and feed when your product needs them.",
     color: "text-violet-600 dark:text-violet-400",
     bg: "bg-violet-50 dark:bg-violet-500/10",
   },
@@ -195,9 +196,10 @@ export default function LandingPage() {
               <span className="text-gradient">structured relationships</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-neutral-500 dark:text-neutral-400 max-w-2xl leading-relaxed">
-              Composable primitives — signals, affinities, scoring, clustering,
-              campaigns, and feed — that your application assembles into
-              personalization, discovery, and analytics features.
+              Ship personalization, discovery, and analytics features without
+              building a recommender from scratch. Send events, get back ranked
+              users, groups, and feeds — on infrastructure you don't have to
+              run.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button size="lg" asChild>
@@ -236,12 +238,12 @@ export default function LandingPage() {
               Building blocks
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
-              Composable primitives
+              Eight primitives. One API. Every combination you need.
             </h2>
             <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400">
-              Eight building blocks that combine differently for every
-              application. Define your domain, capture behavior, and let the
-              platform compute the relationships.
+              Describe your domain, send the events, and let the platform do
+              the relationship math. Compose the pieces differently for every
+              product you ship.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -273,18 +275,18 @@ export default function LandingPage() {
               Three steps
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
-              How it works
+              From signup to a personalized feed in three calls
             </h2>
             <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400">
-              From signup to personalized experiences. The platform handles the
-              computation — you define what matters.
+              You decide what matters. The platform handles the indexing,
+              scoring, and ranking behind it.
             </p>
           </div>
           <div className="grid gap-6 lg:grid-cols-3">
             <StepCard
               step="1"
-              title="Define your domain"
-              description="Create a vocabulary of tags and topics that describe your domain. Music genres, skill categories, product types — whatever your users interact with."
+              title="Describe what your users care about"
+              description="Create a vocabulary of tags and topics — music genres, skill categories, product types, whatever matters in your product. Everything downstream hangs off this taxonomy."
               code={`POST /api/v1/vocabulary/tags
 {
   "name": "jazz",
@@ -294,8 +296,8 @@ export default function LandingPage() {
             />
             <StepCard
               step="2"
-              title="Capture behavior"
-              description="Record signals as users interact. Each signal type is configurable — control what behavior means and how strongly it contributes."
+              title="Send the events you already have"
+              description="Post a signal whenever a user interacts. You choose what each signal type means and how heavily it counts — nothing is hardcoded."
               code={`POST /api/v1/users/u_42/signals
 {
   "signal_type": "listen",
@@ -305,8 +307,8 @@ export default function LandingPage() {
             />
             <StepCard
               step="3"
-              title="Use the relationships"
-              description="Affinities compute automatically. Query the ranked feed, check clusters, run campaigns — primitives compose into product features."
+              title="Ask for results when you need them"
+              description="Affinities update on their own. Pull a ranked feed, read cluster membership, or launch a campaign — the same primitives back every call."
               code={`GET /api/v1/users/u_42/feed/ranked
 // Returns users ranked by affinity,
 // scored by your configured preset,
@@ -324,11 +326,12 @@ export default function LandingPage() {
               Use cases
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
-              Built for every domain
+              One toolkit. Every kind of product.
             </h2>
             <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400">
-              The same primitives, different compositions. Simbee is not a
-              matching API — it is a toolkit that adapts to your application.
+              Creator platforms, marketplaces, learning apps, and professional
+              networks all rely on the same primitives — composed differently
+              for what you're building.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -365,11 +368,11 @@ export default function LandingPage() {
               Infrastructure
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
-              Production-grade from day one
+              Production-ready before your first user signs up
             </h2>
             <p className="mt-4 text-lg text-neutral-500 dark:text-neutral-400">
-              API-first, multi-tenant, encryption by default. Designed for
-              applications that handle real user data.
+              Encryption, tenant isolation, and consent filtering are on by
+              default — so the safe path and the fast path are the same path.
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
@@ -401,16 +404,16 @@ export default function LandingPage() {
               <HexIcon className="h-7 w-7 text-white" />
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50 mb-4">
-              Start building
+              Your first API call is a minute away
             </h2>
             <p className="text-lg text-neutral-500 dark:text-neutral-400 mb-8">
-              Create a tenant, get your API key, and make your first call in
-              under a minute. Free tier, no credit card required.
+              Sign up, grab your key, and start sending signals. Free tier, no
+              credit card.
             </p>
             <div className="flex justify-center gap-3">
               <Button size="lg" asChild>
                 <Link href="/signup">
-                  Create free account
+                  Get started free
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>

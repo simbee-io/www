@@ -1,3 +1,4 @@
+// Copy revised by Claude Code — review before deploy
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Simbee",
   },
   description:
-    "API platform that turns user behavior into structured relationships, recommendations, and insights. Composable primitives for signals, affinities, scoring, clustering, campaigns, and feed.",
+    "Ship personalization, discovery, and analytics features without building a recommender. Send events, get ranked users, groups, and feeds — on infrastructure you don't have to run.",
 };
 
 export default function RootLayout({

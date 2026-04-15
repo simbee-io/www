@@ -1,3 +1,4 @@
+// Copy revised by Claude Code — review before deploy
 import Link from "next/link";
 
 const footerSections = [
@@ -39,8 +40,8 @@ export function SiteFooter() {
               <span className="dark:text-neutral-100">Simbee</span>
             </Link>
             <p className="mt-3 text-sm text-neutral-500 dark:text-neutral-400 max-w-xs leading-relaxed">
-              API platform for user intelligence, relationships, and
-              recommendations.
+              Turn user behavior into ranked feeds, smart groupings, and clean
+              analytics — without running the infrastructure.
             </p>
           </div>
           {footerSections.map((section) => (
