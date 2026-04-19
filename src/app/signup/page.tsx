@@ -1,4 +1,3 @@
-// Copy revised by Claude Code — review before deploy
 import type { Metadata } from "next";
 import { SignupForm } from "./signup-form";
 

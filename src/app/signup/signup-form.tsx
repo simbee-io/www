@@ -136,14 +136,12 @@ export function SignupForm() {
         </div>
 
         <div className="flex gap-3">
-          <Button className="flex-1" asChild>
-            <Link href="/dashboard">
+          <Button className="flex-1" render={<Link href="/dashboard" />}>
               Go to dashboard
               <ArrowRight className="h-4 w-4" />
-            </Link>
           </Button>
-          <Button variant="secondary" className="flex-1" asChild>
-            <Link href="/docs">Read the docs</Link>
+          <Button variant="secondary" className="flex-1" render={<Link href="/docs" />}>
+            Read the docs
           </Button>
         </div>
       </div>

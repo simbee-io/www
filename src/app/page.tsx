@@ -1,4 +1,3 @@
-// Copy revised by Claude Code — review before deploy
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -202,14 +201,12 @@ export default function LandingPage() {
               run.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
-              <Button size="lg" asChild>
-                <Link href="/signup">
+              <Button size="lg" render={<Link href="/signup" />}>
                   Get started free
                   <ArrowRight className="h-4 w-4" />
-                </Link>
               </Button>
-              <Button variant="secondary" size="lg" asChild>
-                <Link href="/docs">Read the docs</Link>
+              <Button variant="secondary" size="lg" render={<Link href="/docs" />}>
+                Read the docs
               </Button>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-neutral-400 dark:text-neutral-500">
@@ -411,17 +408,13 @@ export default function LandingPage() {
               credit card.
             </p>
             <div className="flex justify-center gap-3">
-              <Button size="lg" asChild>
-                <Link href="/signup">
+              <Button size="lg" render={<Link href="/signup" />}>
                   Get started free
                   <ArrowRight className="h-4 w-4" />
-                </Link>
               </Button>
-              <Button variant="secondary" size="lg" asChild>
-                <Link href="/docs/reference">
+              <Button variant="secondary" size="lg" render={<Link href="/docs/reference" />}>
                   Explore the API
                   <ChevronRight className="h-4 w-4" />
-                </Link>
               </Button>
             </div>
           </div>
