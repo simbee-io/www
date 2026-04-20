@@ -100,7 +100,6 @@ export default function RootLayout({
               { href: "/login", label: "Log in", variant: "ghost" },
               { href: "/signup", label: "Get started" },
             ]}
-            maxWidth="max-w-7xl"
           />
           <main className="flex-1">{children}</main>
           <SiteFooter
@@ -108,7 +107,6 @@ export default function RootLayout({
             description="Turn user behavior into ranked feeds, smart groupings, and clean analytics — without running the infrastructure."
             linkGroups={footerLinkGroups}
             legal={{ holder: "Simbee", notice: "All rights reserved" }}
-            maxWidth="max-w-7xl"
           />
           <Analytics />
         </AuthProvider>

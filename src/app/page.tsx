@@ -184,7 +184,7 @@ export default function LandingPage() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-gradient-to-b from-amber-200/30 to-transparent rounded-full blur-3xl dark:from-amber-500/8 dark:to-transparent" />
           <HeroHexGrid />
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 pt-20 pb-24 sm:pt-28 sm:pb-32">
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 pt-20 pb-24 sm:pt-28 sm:pb-32">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3.5 py-1.5 text-sm text-amber-800 dark:border-amber-800/50 dark:bg-amber-950/50 dark:text-amber-300 mb-6">
               <HexIcon className="h-3.5 w-3.5" />
@@ -229,7 +229,7 @@ export default function LandingPage() {
 
       {/* ── Primitives ── */}
       <section className="py-20 sm:py-28 bg-neutral-50 dark:bg-neutral-950">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-2xl mb-14">
             <p className="text-sm font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-3">
               Building blocks
@@ -266,7 +266,7 @@ export default function LandingPage() {
 
       {/* ── How it works ── */}
       <section className="py-20 sm:py-28 bg-white dark:bg-neutral-900/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-2xl mb-14">
             <p className="text-sm font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-3">
               Three steps
@@ -317,7 +317,7 @@ export default function LandingPage() {
 
       {/* ── Use cases ── */}
       <section className="py-20 sm:py-28 bg-neutral-50 dark:bg-neutral-950">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-2xl mb-12">
             <p className="text-sm font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-3">
               Use cases
@@ -359,7 +359,7 @@ export default function LandingPage() {
 
       {/* ── Architecture ── */}
       <section className="py-20 sm:py-28 bg-white dark:bg-neutral-900/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-2xl mb-14">
             <p className="text-sm font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-3">
               Infrastructure
@@ -395,7 +395,7 @@ export default function LandingPage() {
 
       {/* ── CTA ── */}
       <section className="py-20 sm:py-28 bg-neutral-50 dark:bg-neutral-950">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 text-center">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 text-center">
           <div className="mx-auto max-w-md">
             <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 shadow-lg shadow-amber-500/20 mb-6">
               <HexIcon className="h-7 w-7 text-white" />
