@@ -3,8 +3,8 @@
 # legitimately contain console.log / debugger / etc. as illustrative output.
 # Real source code lives outside the docs/ tree and is still scanned normally.
 
-console\.log\(            # console.log inside code-sample template literals (docs)
-console\.debug\(          # same
-console\.error\(          # same
-console\.warn\(           # same
-debugger;?                # example debugging step
+console\.log\(
+console\.debug\(
+console\.error\(
+console\.warn\(
+debugger;?
