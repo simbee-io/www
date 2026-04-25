@@ -13,10 +13,14 @@ import {
 
 interface User {
   id: string;
+  client_id: string;
   external_id: string;
-  traits: Record<string, unknown>;
-  status: string;
-  created_at: string;
+  cluster_id?: string;
+  nsfw_opt_in?: boolean;
+  cluster_confidence?: number;
+  traits?: Record<string, unknown>;
+  created_at?: string;
+  updated_at?: string;
 }
 
 interface UsersResponse {
@@ -83,7 +87,7 @@ export default function UsersPage() {
                     ID
                   </th>
                   <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
-                    Status
+                    Cluster
                   </th>
                   <th className="text-left px-4 py-3 font-medium text-neutral-500 dark:text-neutral-400">
                     Created
@@ -103,16 +107,16 @@ export default function UsersPage() {
                       {user.id}
                     </td>
                     <td className="px-4 py-3">
-                      <Badge
-                        variant={
-                          user.status === "active" ? "success" : "secondary"
-                        }
-                      >
-                        {user.status}
-                      </Badge>
+                      {user.cluster_id ? (
+                        <Badge variant="outline" className="font-mono text-[10px]">
+                          {user.cluster_id.slice(0, 8)}
+                        </Badge>
+                      ) : (
+                        <span className="text-xs text-neutral-400 dark:text-neutral-600">—</span>
+                      )}
                     </td>
                     <td className="px-4 py-3 text-neutral-500 dark:text-neutral-400">
-                      {new Date(user.created_at).toLocaleDateString()}
+                      {user.created_at ? new Date(user.created_at).toLocaleDateString() : "—"}
                     </td>
                   </tr>
                 ))}

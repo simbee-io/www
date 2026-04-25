@@ -43,10 +43,12 @@ const EVENT_TYPES = [
 
 interface WebhookSubscription {
   id: string;
+  client_id: string;
   url: string;
   event_types: string[];
-  active: boolean;
-  created_at: string;
+  status: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 interface WebhooksResponse {
@@ -58,7 +60,7 @@ export default function WebhooksPage() {
   const clientId = session?.client.id;
 
   const { data, loading, error, refetch } = useApi<WebhooksResponse>(
-    clientId ? `/api/v1/clients/${clientId}/webhook_subscriptions` : null
+    clientId ? `/api/v1/clients/${clientId}/webhooks` : null
   );
 
   const [showCreate, setShowCreate] = useState(false);
@@ -91,7 +93,7 @@ export default function WebhooksPage() {
     setCreateError("");
 
     try {
-      await apiFetch(`/api/v1/clients/${clientId}/webhook_subscriptions`, {
+      await apiFetch(`/api/v1/clients/${clientId}/webhooks`, {
         method: "POST",
         token,
         body: JSON.stringify({
@@ -117,7 +119,7 @@ export default function WebhooksPage() {
     setDeleteError("");
     try {
       await apiFetch(
-        `/api/v1/clients/${clientId}/webhook_subscriptions/${id}`,
+        `/api/v1/clients/${clientId}/webhooks/${id}`,
         { method: "DELETE", token }
       );
       refetch();
@@ -250,9 +252,9 @@ export default function WebhooksPage() {
                       {webhook.url}
                     </code>
                     <Badge
-                      variant={webhook.active ? "success" : "secondary"}
+                      variant={webhook.status === "active" ? "success" : "secondary"}
                     >
-                      {webhook.active ? "active" : "inactive"}
+                      {webhook.status}
                     </Badge>
                   </div>
                   <div className="flex flex-wrap gap-1 mt-2">

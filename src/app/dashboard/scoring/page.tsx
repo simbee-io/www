@@ -5,30 +5,34 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { AlertCircle, Loader2, SlidersHorizontal } from "lucide-react";
 
-interface ScoringPreset {
-  id: string;
-  name: string;
-  description: string;
-  weights: Record<string, number>;
-  active: boolean;
+type PresetConfig = Record<string, unknown>;
+type LayerPresets = Record<string, PresetConfig>;
+type AvailablePresets = Record<string, LayerPresets>;
+
+interface PresetsResponse {
+  data: AvailablePresets;
 }
 
-interface ScoringPresetsResponse {
-  data: ScoringPreset[];
+function formatValue(val: unknown): string {
+  if (val === null) return "null";
+  if (typeof val === "object") return JSON.stringify(val);
+  return String(val);
 }
 
 export default function ScoringPage() {
-  const { data, loading, error } = useApi<ScoringPresetsResponse>(
-    "/api/v1/scoring_presets"
+  const { data, loading, error } = useApi<PresetsResponse>(
+    "/api/v1/config/scoring/presets"
   );
+
+  const layers = data?.data ? Object.entries(data.data) : [];
 
   return (
     <div>
       <div className="mb-6">
         <h1 className="text-2xl font-bold">Scoring</h1>
         <p className="text-neutral-500 dark:text-neutral-400 text-sm mt-1">
-          Scoring presets control how users are ranked. Different presets produce
-          different results from the same data.
+          Built-in presets per scoring layer. Select one preset per layer to
+          control how users are ranked.
         </p>
       </div>
 
@@ -41,52 +45,49 @@ export default function ScoringPage() {
           <AlertCircle className="h-4 w-4" />
           {error}
         </div>
-      ) : data?.data?.length === 0 ? (
+      ) : layers.length === 0 ? (
         <div className="text-center py-12 text-neutral-500 dark:text-neutral-400 text-sm">
-          No scoring presets configured. Presets are created via the API.
+          No scoring presets available.
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
-          {data?.data?.map((preset) => (
-            <Card key={preset.id}>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <SlidersHorizontal className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-                    <CardTitle>{preset.name}</CardTitle>
-                  </div>
-                  <Badge variant={preset.active ? "success" : "secondary"}>
-                    {preset.active ? "active" : "inactive"}
-                  </Badge>
-                </div>
-                {preset.description && (
-                  <CardDescription>{preset.description}</CardDescription>
-                )}
-              </CardHeader>
-              <CardContent>
-                <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400 mb-2">
-                  Weights
-                </p>
-                <div className="space-y-1.5">
-                  {Object.entries(preset.weights).map(([key, val]) => (
-                    <div key={key} className="flex items-center justify-between">
-                      <span className="text-sm text-neutral-500 dark:text-neutral-400">{key}</span>
-                      <div className="flex items-center gap-2">
-                        <div className="w-24 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
+        <div className="space-y-8">
+          {layers.map(([layer, presets]) => (
+            <section key={layer}>
+              <div className="flex items-center gap-2 mb-3">
+                <SlidersHorizontal className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                <h2 className="text-lg font-semibold">{layer}</h2>
+                <Badge variant="outline">{Object.keys(presets).length}</Badge>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {Object.entries(presets).map(([presetName, config]) => (
+                  <Card key={`${layer}.${presetName}`}>
+                    <CardHeader>
+                      <CardTitle className="font-mono text-sm">{presetName}</CardTitle>
+                      <CardDescription className="font-mono text-[11px]">
+                        {layer}.{presetName}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <dl className="space-y-1.5">
+                        {Object.entries(config).map(([key, val]) => (
                           <div
-                            className="h-full rounded-full bg-amber-500"
-                            style={{ width: `${Math.min(val * 100, 100)}%` }}
-                          />
-                        </div>
-                        <span className="text-xs font-mono w-8 text-right">
-                          {val}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                            key={key}
+                            className="flex items-start justify-between gap-3 text-xs"
+                          >
+                            <dt className="font-mono text-neutral-500 dark:text-neutral-400 truncate">
+                              {key}
+                            </dt>
+                            <dd className="font-mono text-neutral-900 dark:text-neutral-100 text-right break-all">
+                              {formatValue(val)}
+                            </dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </section>
           ))}
         </div>
       )}
