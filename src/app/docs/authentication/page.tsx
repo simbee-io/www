@@ -71,7 +71,6 @@ export default function AuthenticationPage() {
           tabs={[
             {
               label: "Ruby",
-              language: "ruby",
               code: `require "simbee-sdk"
 
 client = Simbee::Client.new(api_key: ENV.fetch("SIMBEE_API_KEY"))
@@ -80,7 +79,6 @@ client.feed.ranked(user_id: "alice")`,
             },
             {
               label: "TypeScript",
-              language: "typescript",
               code: `import { SimbeeClient } from "@simbee-io/sdk";
 
 const client = new SimbeeClient({ apiKey: process.env.SIMBEE_API_KEY! });
@@ -91,7 +89,6 @@ const { data } = await client.fetch.GET("/api/v1/users/{id}/feed/ranked", {
             },
             {
               label: "Python",
-              language: "python",
               code: `import os
 from simbee_sdk import Client
 
@@ -118,7 +115,6 @@ client.feed.ranked(user_id="alice")`,
           tabs={[
             {
               label: "curl",
-              language: "bash",
               code: `curl -X POST https://api.simbee.io/auth/exchange \\
   -H "Content-Type: application/json" \\
   -d '{"api_key": "'"$SIMBEE_API_KEY"'"}'`,
@@ -130,7 +126,6 @@ client.feed.ranked(user_id="alice")`,
           tabs={[
             {
               label: "JSON",
-              language: "json",
               code: `{
   "data": {
     "token": "eyJhbGciOiJFUzI1NiIs...",
