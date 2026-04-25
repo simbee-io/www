@@ -1,0 +1,10 @@
+# .tdd-ignore — ERE patterns; lines matching any are dropped from stub-scan results.
+# This is a Next.js documentation site. Code examples shown to readers
+# legitimately contain console.log / debugger / etc. as illustrative output.
+# Real source code lives outside the docs/ tree and is still scanned normally.
+
+console\.log\(            # console.log inside code-sample template literals (docs)
+console\.debug\(          # same
+console\.error\(          # same
+console\.warn\(           # same
+debugger;?                # example debugging step
