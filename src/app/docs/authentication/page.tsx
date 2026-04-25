@@ -10,20 +10,21 @@ export default function AuthenticationPage() {
     <div>
       <h1 className="text-3xl font-bold mb-2">Authentication</h1>
       <p className="text-lg text-neutral-500 dark:text-neutral-400 mb-8">
-        Simbee uses JWT bearer tokens for API authentication. This guide walks
-        through the complete flow: signing up, creating API keys, exchanging
-        credentials for tokens, and making authenticated requests.
+        Simbee authenticates server-to-server traffic with an API key. The
+        official SDKs use the key directly — JWT exchange happens transparently
+        under the hood. If you call the API by hand, this page covers the raw
+        HTTP flow too.
       </p>
 
       <nav className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4 mb-10">
         <p className="font-semibold text-sm mb-2">On this page</p>
         <ol className="list-decimal list-inside text-sm space-y-1 text-neutral-500 dark:text-neutral-400">
           <li><a href="#overview" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Overview</a></li>
-          <li><a href="#signup" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Sign up</a></li>
-          <li><a href="#api-keys" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Create an API key</a></li>
-          <li><a href="#token-exchange" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Exchange credentials for a JWT</a></li>
-          <li><a href="#authenticated-requests" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Make authenticated requests</a></li>
-          <li><a href="#token-refresh" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Token refresh</a></li>
+          <li><a href="#sdk" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Using an SDK (recommended)</a></li>
+          <li><a href="#token-exchange" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Raw HTTP — exchange API key for JWT</a></li>
+          <li><a href="#authenticated-requests" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Authenticated requests</a></li>
+          <li><a href="#api-keys" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Managing API keys</a></li>
+          <li><a href="#signup" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">Provisioning a tenant</a></li>
           <li><a href="#jwks" className="hover:text-neutral-900 dark:text-neutral-100 transition-colors">JWKS verification</a></li>
         </ol>
       </nav>
@@ -31,31 +32,122 @@ export default function AuthenticationPage() {
       {/* Overview */}
       <section id="overview" className="mb-10">
         <h2 className="text-2xl font-semibold mb-3">Overview</h2>
-        <p className="mb-4 text-neutral-500 dark:text-neutral-400">The authentication flow has three steps:</p>
-        <ol className="list-decimal pl-5 space-y-2 mb-4">
+        <p className="mb-4 text-neutral-500 dark:text-neutral-400">
+          You hold one credential: an <strong>API key</strong>. Everything else
+          is plumbing.
+        </p>
+        <ul className="list-disc pl-5 space-y-2 mb-4">
           <li>
-            <strong>Sign up</strong> — Create a tenant via{" "}
-            <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">POST /auth/signup</code>. You receive a
-            client, owner user, and an initial JWT.
+            <strong>SDK path (recommended).</strong> Pass your API key to the
+            SDK constructor and call methods. The SDK exchanges the key for a
+            short-lived JWT on first use, caches it, and refreshes it before
+            expiry. You never write a token-handling line of code.
           </li>
           <li>
-            <strong>Create an API key</strong> — Use the initial token to create
-            a named API key via{" "}
-            <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">
-              POST /api/v1/clients/:client_id/api_keys
-            </code>
-            . The raw key is shown only once.
+            <strong>Raw HTTP path.</strong> One{" "}
+            <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">POST /auth/exchange</code>{" "}
+            with your API key returns a JWT. Use that token on subsequent calls
+            until it expires (15 min default), then call{" "}
+            <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">/auth/exchange</code>{" "}
+            again.
           </li>
-          <li>
-            <strong>Authenticate</strong> — Exchange credentials for a JWT via{" "}
-            <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">POST /auth/token</code>. Include the token
-            as <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">Authorization: Bearer &lt;token&gt;</code>{" "}
-            on all subsequent requests.
-          </li>
-        </ol>
+        </ul>
         <p className="text-sm text-neutral-500 dark:text-neutral-400">
-          Tokens are short-lived (15 minutes by default). When a token expires,
-          re-authenticate with <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">POST /auth/token</code>.
+          Passwords aren&apos;t in the API path. The signup and email-login flows
+          further down are for the admin dashboard — not for your application&apos;s
+          API calls.
+        </p>
+      </section>
+
+      {/* SDK */}
+      <section id="sdk" className="mb-10">
+        <h2 className="text-2xl font-semibold mb-3">Using an SDK (recommended)</h2>
+        <p className="mb-3 text-neutral-500 dark:text-neutral-400">
+          Pick your stack and pass the API key in. The SDK handles the exchange,
+          caches the JWT for ~15 minutes, and refreshes ~30 seconds before
+          expiry under a lock so concurrent requests don&apos;t stampede.
+        </p>
+        <CodeTabs
+          tabs={[
+            {
+              label: "Ruby",
+              language: "ruby",
+              code: `require "simbee-sdk"
+
+client = Simbee::Client.new(api_key: ENV.fetch("SIMBEE_API_KEY"))
+
+client.feed.ranked(user_id: "alice")`,
+            },
+            {
+              label: "TypeScript",
+              language: "typescript",
+              code: `import { SimbeeClient } from "@simbee-io/sdk";
+
+const client = new SimbeeClient({ apiKey: process.env.SIMBEE_API_KEY! });
+
+const { data } = await client.fetch.GET("/api/v1/users/{id}/feed/ranked", {
+  params: { path: { id: "alice" } },
+});`,
+            },
+            {
+              label: "Python",
+              language: "python",
+              code: `import os
+from simbee_sdk import Client
+
+client = Client(api_key=os.environ["SIMBEE_API_KEY"])
+
+client.feed.ranked(user_id="alice")`,
+            },
+          ]}
+        />
+        <p className="mt-3 text-sm text-neutral-500 dark:text-neutral-400">
+          That is the entire authentication story for the SDK path.
+        </p>
+      </section>
+
+      {/* Raw HTTP — exchange */}
+      <section id="token-exchange" className="mb-10">
+        <h2 className="text-2xl font-semibold mb-3">Raw HTTP — exchange API key for JWT</h2>
+        <p className="mb-3 text-neutral-500 dark:text-neutral-400">
+          When you can&apos;t use an SDK (curl, an unsupported language, a
+          one-off integration), trade your API key for a JWT once and reuse the
+          token until it expires.
+        </p>
+        <CodeTabs
+          tabs={[
+            {
+              label: "curl",
+              language: "bash",
+              code: `curl -X POST https://api.simbee.io/auth/exchange \\
+  -H "Content-Type: application/json" \\
+  -d '{"api_key": "'"$SIMBEE_API_KEY"'"}'`,
+            },
+          ]}
+        />
+        <p className="mt-3 mb-2 text-sm text-neutral-500 dark:text-neutral-400">Response:</p>
+        <CodeTabs
+          tabs={[
+            {
+              label: "JSON",
+              language: "json",
+              code: `{
+  "data": {
+    "token": "eyJhbGciOiJFUzI1NiIs...",
+    "expires_in": 900,
+    "scopes": ["admin", "read:user", "..."]
+  }
+}`,
+            },
+          ]}
+        />
+        <p className="mt-3 text-sm text-neutral-500 dark:text-neutral-400">
+          The token is a 15-minute ES256 JWT signed by Simbee. When{" "}
+          <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">expires_in</code>{" "}
+          gets close to zero, call{" "}
+          <code className="text-xs bg-neutral-50 dark:bg-neutral-950 px-1.5 py-0.5 rounded">/auth/exchange</code>{" "}
+          again. There is no refresh token in this flow — your API key is the
+          long-lived credential.
         </p>
       </section>
 

@@ -40,7 +40,7 @@ const guides = [
     icon: Key,
     title: "Authentication",
     description:
-      "Sign up, create API keys, exchange credentials for JWTs, and make authenticated requests.",
+      "How the SDK uses your API key, how the underlying token exchange works, and how to authenticate raw HTTP calls.",
     color: "text-teal-600 dark:text-teal-400",
     bg: "bg-teal-50 dark:bg-teal-900/20",
   },
@@ -120,37 +120,57 @@ export default function DocsHome() {
 
       <h2 id="sdks" className="text-xl font-semibold mb-3">SDKs</h2>
       <p className="text-neutral-500 dark:text-neutral-400 mb-3">
-        Use a typed client in your language of choice:
+        Use a typed client in your language of choice. Each SDK takes your API
+        key, exchanges it for a short-lived session token transparently, and
+        refreshes before expiry — you never handle JWTs by hand.
       </p>
       <div className="grid gap-2 sm:grid-cols-3 mb-10">
-        <SdkCard lang="TypeScript" pkg="@simbee-io/client" registry="npm" />
-        <SdkCard lang="Ruby" pkg="simbee-client" registry="gem" />
-        <SdkCard lang="Python" pkg="simbee-client" registry="pip" />
+        <SdkCard lang="TypeScript" pkg="@simbee-io/sdk" registry="npm" />
+        <SdkCard lang="Ruby" pkg="simbee-sdk" registry="gem" />
+        <SdkCard lang="Python" pkg="simbee-sdk" registry="pip" />
       </div>
 
       <h2 id="quick-start" className="text-xl font-semibold mb-3">Quick start</h2>
       <ol className="space-y-4">
         <QuickstartStep
           number="1"
-          title="Sign up"
-          code={`curl -X POST https://api.simbee.io/auth/signup \\
-  -H "Content-Type: application/json" \\
-  -d '{"email": "you@example.com", "password": "...", "company_name": "Acme"}'`}
+          title="Install the SDK"
+          code={`# Ruby
+gem install simbee-sdk
+
+# Node / TS
+npm install @simbee-io/sdk
+
+# Python
+pip install simbee-sdk`}
         />
         <QuickstartStep
           number="2"
-          title="Authenticate"
-          code={`curl -X POST https://api.simbee.io/auth/token \\
-  -H "Content-Type: application/json" \\
-  -d '{"email": "you@example.com", "password": "..."}'`}
+          title="Initialize with your API key"
+          code={`# Ruby
+client = Simbee::Client.new(api_key: ENV.fetch("SIMBEE_API_KEY"))
+
+// TypeScript
+const client = new SimbeeClient({ apiKey: process.env.SIMBEE_API_KEY! });
+
+# Python
+client = simbee_sdk.Client(api_key=os.environ["SIMBEE_API_KEY"])`}
         />
         <QuickstartStep
           number="3"
-          title="Make API calls"
-          code={`curl https://api.simbee.io/api/v1/users \\
-  -H "Authorization: Bearer YOUR_JWT_TOKEN"`}
+          title="Call the API"
+          code={`# All three SDKs share the same surface — pick a user, get their feed.
+client.feed.ranked(user_id: "alice")`}
         />
       </ol>
+
+      <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-6">
+        Calling Simbee from a language without an SDK?{" "}
+        <Link href="/docs/authentication" className="underline">
+          See raw HTTP auth
+        </Link>{" "}
+        — one POST exchanges your API key for a 15-minute JWT.
+      </p>
     </div>
   );
 }
